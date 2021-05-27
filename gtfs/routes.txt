@@ -1,0 +1,105 @@
+route_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_division
+0,0,"Central Ave",,3,,PHNS
+0A,0A,"South Central Shuttle",,3,,PHNS
+1,1,"Washington St",,3,,PHNS
+3,3,"Van Buren St",,3,,PHW
+7,7,"7th St",,3,,PHNS
+8,8,"7th Ave",,3,,PHNS
+10,10,"Roosevelt St",,3,,PHNS
+12,12,"12th St",,3,,PHNS
+13,13,"Buckeye Rd",,3,,PHW
+15,15,"15th Ave",,3,,PHNS
+16,16,"16th St",,3,,PHNS
+17,17,"McDowell Rd",,3,,PHW
+19,19,"19th Ave",,3,,PHNS
+27,27,"27th Ave",,3,,PHNS
+28,28,"Lower Buckeye Rd",,3,,PHNS
+29,29,"Thomas Rd",,3,,PHW
+30,30,"University Dr",,3,,VMTM
+32,32,"32nd St/40th St",,3,,PHNS
+35,35,"35th Ave",,3,,PHNS
+39,39,"North 40th St",,3,,PHNS
+40,40,"Main St",,3,,VMTM
+41,41,"Indian School Rd",,3,,PHW
+43,43,"43rd Ave",,3,,PHW
+44,44,"44th St/Tatum Blvd",,3,,PHNS
+45,45,"Broadway Rd",,3,,VMTM
+48,48,"48th St",,3,,VMTM
+50,50,"Camelback Rd",,3,,PHNS
+51,51,"51st Ave",,3,,PHW
+52,52,"Roeser Rd",,3,,PHNS
+52s,52,"Roeser Rd",,3,,PHNS
+56,56,"Priest Dr",,3,,VMTM
+59,59,"59th Ave",,3,,PHW
+60,60,"Bethany Home Rd",,3,,PHNS
+61,61,"Southern Ave",,3,,VMTM
+62,62,"Hardy Dr",,3,,VMTM
+65,65,"Mill Ave/Kyrene Rd",,3,,VMTM
+66,66,"Mill Ave/Kyrene Rd",,3,,VMTM
+67,67,"67th Ave",,3,,PHW
+70,70,"24th St/Glendale Ave",,3,,PHNS
+72,72,"Scottsdale Rd/Rural Rd",,3,,VMTM
+75,75,"75th Ave",,3,,PHW
+77,77,"Baseline Rd",,3,,VMTM
+80,80,"Northern Ave/Shea Blvd",,3,,PHNS
+81,81,"Hayden Rd/McClintock Dr",,3,,VMTM
+83,83,"83rd Ave",,3,,PHW
+90,90,"Dunlap Ave/Cave Creek Rd",,3,,PHNS
+96,96,"Dobson Rd",,3,,VMTM
+104,104,"Alma School Rd",,3,,VMTM
+106,106,"Peoria Ave",,3,,PHNS
+108,108,"Elliot Rd/48th St",,3,,VMTM
+112,112,"Country Club Dr/Arizona Ave",,3,,VMTM
+120,120,"Mesa Dr",,3,,VMTM
+122,122,"Cactus Rd",,3,,PHNS
+128,128,"Stapley Dr",,3,,VMTM
+136,136,"Gilbert Rd",,3,,VMTM
+138,138,"Thunderbird Rd",,3,,PHNS
+140,140,"Ray Rd",,3,,VMTM
+154,154,"Greenway Rd",,3,,PHNS
+156,156,"Chandler Blvd",,3,,VMTM
+170,170,"Bell Rd",,3,,PHNS
+184,184,"Power Rd",,3,,VMTM
+186,186,"Union Hills Dr/Mayo Blvd",,3,,PHNS
+514,514,"Scottsdale Express",,3,,VMTM
+521,521,"Central Tempe Express",,3,,VMTM
+522,522,"South Tempe Express",,3,,VMTM
+531,531,"Mesa/Gilbert Express",,3,,VMTM
+533,533,"Mesa Express",,3,,VMTM
+535,535,"Northeast Mesa Express",,3,,VMTM
+541,541,"Chandler/Mesa Express",,3,,VMTM
+542,542,"Chandler Express",,3,,VMTM
+562,562,"Goodyear Express",,3,,VMW
+563,563,"Avondale/Buckeye Express",,3,,VMW
+571,571,"Surprise Express",,3,,VMW
+573,573,"West Glendale Express",,3,,VMW
+575,575,"North Glendale Express",,3,,VMW
+685,685,"Ajo/Gila Bend",,3,,VMRU
+68CM,68CM,"68th St/Camelback Rd",,3,,SC
+ALEX,ALEX,"ALEX Circulator",,3,,PHNS
+BUZZ,BUZZ,"Downtown BUZZ",,3,,VMTM
+DASH,DASH,"Downtown DASH",,3,,PHNS
+EART,EART,"Orbit Earth",,3,,VMTM
+FLSH,FLSH,"FLASH",,3,,VMTM
+GAL,GAL,"Grand Ave Limited",,3,,VMW
+GUS1,GUS1,"GUS 1",,3,,GL
+GUS2,GUS2,"GUS 2",,3,,GL
+GUS3,GUS3,"GUS 3",,3,,GL
+I10E,I10E,"I-10 East RAPID",,3,,PHNS
+I10W,I10W,"I-10 West RAPID",,3,,PHNS
+I17,I17,"I-17 RAPID",,3,,PHNS
+JUPI,JUPI,"Orbit Jupiter",,3,,VMTM
+MARS,MARS,"Orbit Mars",,3,,VMTM
+MARY,MARY,"MARY Circulator",,3,,PHW
+MERC,MERC,"Orbit Mercury",,3,,VMTM
+MLHD,MLHD,"Miller Rd/Hayden Rd",,3,,SC
+MSTG,MSTG,"Mustang",,3,,SC
+RAIL,RAIL,"Valley Metro Rail",,0,,VMLR
+SKYT,SKYT,"PHX Sky Train",,0,https://www.skyharbor.com/PHXSkyTrain,SKYT
+SME,SME,"South Mountain East RAPID",,3,,PHNS
+SMRT,SMRT,"SMART Circulator",,3,,PHNS
+SMW,SMW,"South Mountain West RAPID",,3,,PHNS
+SR51,SR51,"SR-51 RAPID",,3,,PHNS
+STRN,STRN,"Orbit Saturn",,3,,VMTM
+VENU,VENU,"Orbit Venus",,3,,VMTM
+ZOOM,ZOOM,"Avondale Circulator",,3,,VMW
