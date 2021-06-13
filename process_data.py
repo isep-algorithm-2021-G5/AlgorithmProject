@@ -96,6 +96,7 @@ def write_csv(graph, stops):
     with open(os.path.join("gtfs", "graph.csv"), encoding="utf-8",
               mode="w+", newline='') as f:
         f_csv = csv.writer(f)
+        f_csv.writerow(['from', 'to', 'weight'])
         f_csv.writerows(graph)
     stops_list = list()
     for stop_id in stops:
@@ -104,6 +105,7 @@ def write_csv(graph, stops):
     with open(os.path.join("gtfs", "stops.csv"), encoding="utf-8",
               mode="w+", newline='') as f:
         f_csv = csv.writer(f)
+        f_csv.writerow(['id', 'lat', 'lon'])
         f_csv.writerows(stops_list)
 
 
@@ -129,4 +131,4 @@ if __name__ == "__main__":
     adj_list_res = get_adj_list(trips_with_stops)
     stops_res = get_stops(trips_with_stops)
     graph_res = get_graph(adj_list_res, stops_res)
-    write_csv(graph_res,stops_res)
+    write_csv(graph_res, stops_res)
