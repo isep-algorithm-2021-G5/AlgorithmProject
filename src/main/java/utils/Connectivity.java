@@ -30,11 +30,10 @@ public class Connectivity
     {
         Map<Integer, Integer> count = new HashMap<>(7772);
         val nodes = graph.getNodes();
-        val adjList = graph.getAdjList();
 
         for (Integer from : nodes.keySet())
         {
-            BfsShortestPath bfs = new BfsShortestPath(nodes, adjList, from);
+            BfsShortestPath bfs = new BfsShortestPath(graph, from);
             for (Integer to : nodes.keySet())
             {
                 if (!to.equals(from) && bfs.hasPathTo(to))

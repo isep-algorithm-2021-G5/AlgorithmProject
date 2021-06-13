@@ -2,6 +2,7 @@ package algorithm;
 
 import com.google.common.collect.Multimap;
 import graph.Edge;
+import graph.Graph;
 import graph.Node;
 import java.util.Collection;
 import java.util.Collections;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
+import lombok.val;
 
 /**
  * @author : Xianqi LIU
@@ -24,9 +26,11 @@ public class BfsShortestPath
     private final int[] distance;
 
 
-    public BfsShortestPath(Map<Integer, Node> nodes, Multimap<Integer, Edge> graph, int start)
+    public BfsShortestPath(Graph graph, Integer start)
     {
 
+        val nodes = graph.getNodes();
+        val adj = graph.getAdjList();
         //TODO 改成 map
         int initCapacity = nodes.size() + 100000;
 
@@ -47,7 +51,7 @@ public class BfsShortestPath
             Collection<Edge> adjList;
             // Dequeue a node from queue
             int v = queue.poll();
-            adjList = graph.get(v);
+            adjList = adj.get(v);
 
             // Get all neighbors of the dequeued node v
             // If a neighbor has not been visited, then mark it
