@@ -60,7 +60,14 @@ public class Graph {
                 //System.out.println(mapGraph.get(src));
             }
         }
-        System.out.println(this.nodes.get(0));
+        //System.out.println(this.nodes.get(0));
+    }
+
+    public void printGraph(){
+        for(int i=0; i<3; i++){
+            System.out.print(this.nodes.get(i));
+            System.out.println(this.mapGraph.get(this.nodes.get(i)));
+        }
     }
 
     public ArrayList<Edge> getEdges() {
