@@ -1,6 +1,7 @@
 package graph;
 
 import com.google.common.base.Objects;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
@@ -9,6 +10,7 @@ import lombok.Getter;
  * @date : 2021/6/13
  */
 @Getter
+@EqualsAndHashCode(callSuper = true)
 public class WeightedEdge extends Edge
 {
 
@@ -18,27 +20,5 @@ public class WeightedEdge extends Edge
     {
         super(from, to);
         this.weight = weight;
-    }
-
-    @Override
-    public boolean equals(Object o)
-    {
-        if (this == o)
-        {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass())
-        {
-            return false;
-        }
-        WeightedEdge edge = (WeightedEdge) o;
-        return Objects.equal(getFrom(), edge.getFrom())
-                && Objects.equal(getTo(), edge.getTo());
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return Objects.hashCode(getFrom(), getTo());
     }
 }
