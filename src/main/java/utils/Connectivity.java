@@ -5,6 +5,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import graph.Edge;
 import graph.Graph;
+import graph.Node;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.val;
@@ -64,7 +65,7 @@ public class Connectivity
     public static Graph removeIsolated(Graph graph, int threshold)
     {
         val count = calculateAll(graph);
-        val nodes = graph.getNodes();
+        Map<Integer, Node> nodes = new HashMap<>(graph.getNodes());
         Multimap<Integer, Edge> adjList = ArrayListMultimap.create();
         for (Map.Entry<Integer, Integer> entry : count.entrySet())
         {
