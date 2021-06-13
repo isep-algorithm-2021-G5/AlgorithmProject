@@ -1,3 +1,4 @@
+import Algo.BFSSP;
 import com.google.common.collect.Multimap;
 import graph.Edge;
 import graph.Node;
@@ -29,6 +30,12 @@ public class Main
 
         Visualization.show(nodes, graph);
 
+
+        //test BFSSP
+//        BFSSP bfsSP = new BFSSP();
+//        bfsSP.bfs(nodes, graph, 1453);
+//        System.out.println(bfsSP.hasPathTo(1440));
+//        System.out.println(bfsSP.printSP(1440));
 
     }
 
