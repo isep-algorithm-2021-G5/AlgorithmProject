@@ -12,9 +12,9 @@ import java.util.Map;
 public class Main
 {
 
-    public static final String STOPS = "./gtfs/stops.csv";
-    public static final String GRAPH = "./gtfs/graph.csv";
-    public static final String WEIGHTED_GRAPH = "./gtfs/graph.csv";
+    public static final String STOPS = "./data/processed/stops.csv";
+    public static final String GRAPH = "./data/processed/graph.csv";
+    public static final String WEIGHTED_GRAPH = "./data/processed/graph.csv";
 
     public static void main(String[] args)
     {

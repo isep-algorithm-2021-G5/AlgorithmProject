@@ -6,7 +6,7 @@ from math import cos, sin, asin, sqrt, pi
 
 def get_bus_routes():
     routes = set()
-    with open(os.path.join("gtfs", "routes.txt"), encoding="utf-8") as f:
+    with open(os.path.join("data", "routes.txt"), encoding="utf-8") as f:
         f_csv = csv.DictReader(f)
         for row in f_csv:
             if row["route_type"] == "3":
@@ -16,7 +16,7 @@ def get_bus_routes():
 
 def get_trips_by_routes(routes):
     trips = defaultdict(list)
-    with open(os.path.join("gtfs", "trips.txt"), encoding="utf-8") as f:
+    with open(os.path.join("data", "trips.txt"), encoding="utf-8") as f:
         f_csv = csv.DictReader(f)
         for row in f_csv:
             if row["route_id"] in routes:
@@ -28,7 +28,7 @@ def get_trips_with_stops(trips):
     trips_stops = defaultdict(list)
     trips_stops_unique = list()
 
-    with open(os.path.join("gtfs", "stop_times.txt"), encoding="utf-8") as f:
+    with open(os.path.join("data", "stop_times.txt"), encoding="utf-8") as f:
         f_csv = csv.DictReader(f)
         for row in f_csv:
             trips_stops[row["trip_id"]].append(row["stop_id"])
@@ -57,7 +57,7 @@ def get_stops(trips):
         for stop in trip:
             used_stops.add(stop)
 
-    with open(os.path.join("gtfs", "stops.txt"), encoding="utf-8") as f:
+    with open(os.path.join("data", "stops.txt"), encoding="utf-8") as f:
         f_csv = csv.DictReader(f)
         for row in f_csv:
             if row["stop_id"] in used_stops:
@@ -93,7 +93,7 @@ def get_graph(adj_list, stops):
 
 
 def write_csv(graph, stops):
-    with open(os.path.join("gtfs", "graph.csv"), encoding="utf-8",
+    with open(os.path.join("data", "processed", "graph.csv"), encoding="utf-8",
               mode="w+", newline='') as f:
         f_csv = csv.writer(f)
         f_csv.writerow(['from', 'to', 'weight'])
@@ -102,7 +102,7 @@ def write_csv(graph, stops):
     for stop_id in stops:
         stops_list.append([int(stop_id), stops[stop_id]["lat"],
                            stops[stop_id]["lon"]])
-    with open(os.path.join("gtfs", "stops.csv"), encoding="utf-8",
+    with open(os.path.join("data", "processed", "stops.csv"), encoding="utf-8",
               mode="w+", newline='') as f:
         f_csv = csv.writer(f)
         f_csv.writerow(['id', 'lat', 'lon'])
