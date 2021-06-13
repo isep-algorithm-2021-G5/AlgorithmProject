@@ -27,7 +27,10 @@ public class Main
         Multimap<Integer, WeightedEdge> weightedGraph = graphFileReader
                 .readWeightedGraph(WEIGHTED_GRAPH);
 
-        System.out.println(1);
+        Visualization.show(nodes, graph);
+
 
     }
+
+
 }
