@@ -1,3 +1,5 @@
+package utils;
+
 import com.csvreader.CsvReader;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -17,7 +19,7 @@ import java.util.Map;
 public class GraphFileReader
 {
 
-    public Map<Integer, Node> readNodes(String path)
+    public static Map<Integer, Node> readNodes(String path)
     {
         Map<Integer, Node> nodes = new HashMap<>(7772);
         try
@@ -37,7 +39,7 @@ public class GraphFileReader
         return nodes;
     }
 
-    public Multimap<Integer, Edge> readGraph(String path)
+    public static Multimap<Integer, Edge> readGraph(String path)
     {
         Multimap<Integer, Edge> graph = ArrayListMultimap.create();
         try
@@ -58,7 +60,7 @@ public class GraphFileReader
         return graph;
     }
 
-    public Multimap<Integer, WeightedEdge> readWeightedGraph(String path)
+    public static Multimap<Integer, WeightedEdge> readWeightedGraph(String path)
     {
         Multimap<Integer, WeightedEdge> weightedGraph = ArrayListMultimap.create();
         try

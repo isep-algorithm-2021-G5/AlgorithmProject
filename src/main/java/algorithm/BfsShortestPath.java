@@ -1,27 +1,34 @@
-package Algo;
+package algorithm;
 
 import com.google.common.collect.Multimap;
 import graph.Edge;
 import graph.Node;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Stack;
 
-import java.util.*;
+/**
+ * @author : Xianqi LIU
+ * @version : 1.0.0
+ * @date : 2021/6/13
+ */
+public class BfsShortestPath
+{
 
-public class BFSSP {
-
-    private boolean[] marked;
-    private int[] previous;
-    private int[] distance;
-
-    private Multimap<Integer, Edge> graph;
-    private Map<Integer, Node> nodes;
+    private final boolean[] marked;
+    private final int[] previous;
+    private final int[] distance;
 
 
-    public void bfs(Map<Integer, Node> nodes, Multimap<Integer, Edge> graph, int start)
+    public BfsShortestPath(Map<Integer, Node> nodes, Multimap<Integer, Edge> graph, int start)
     {
-        this.nodes = nodes;
-        this.graph = graph;
 
-        int initCapacity = nodes.size()+100000;
+        //TODO 改成 map
+        int initCapacity = nodes.size() + 100000;
 
         this.marked = new boolean[initCapacity];
         this.previous = new int[initCapacity];
@@ -34,9 +41,10 @@ public class BFSSP {
         distance[start] = 0;
         marked[start] = true;
 
-        while (queue.size() != 0) {
+        while (queue.size() != 0)
+        {
             // Init adjList
-            Collection<Edge> adjList = null ;
+            Collection<Edge> adjList;
             // Dequeue a node from queue
             int v = queue.poll();
             adjList = graph.get(v);
@@ -44,8 +52,10 @@ public class BFSSP {
             // Get all neighbors of the dequeued node v
             // If a neighbor has not been visited, then mark it
             // visited and enqueue it
-            for (Edge edge : adjList) {
-                if(!marked[edge.getTo()]){
+            for (Edge edge : adjList)
+            {
+                if (!marked[edge.getTo()])
+                {
                     queue.add(edge.getTo());
                     marked[edge.getTo()] = true;
                     previous[edge.getTo()] = v;
@@ -55,28 +65,34 @@ public class BFSSP {
         }
     }
 
-    // return true if there is a path from s to v
+    /**
+     * return true if there is a path from s to v
+     */
     public boolean hasPathTo(int v)
     {
         return this.marked[v];
     }
 
-    // return the length pf the shortest path from s to v
+    /**
+     * return the length pf the shortest path from s to v
+     */
     public int distTo(int v)
     {
         return this.distance[v];
     }
 
-    // print the shortest path from s to v
-    public List<Integer> printSP(int v)
+    /**
+     * print the shortest path from s to v
+     */
+    public List<Integer> printShortestPath(int v)
     {
-        if(!hasPathTo(v))
+        if (!hasPathTo(v))
         {
             return null;
         }
         Stack<Integer> path = new Stack<>();
         int x;
-        for(x = v; this.distance[x] != 0; x = this.previous[x])
+        for (x = v; this.distance[x] != 0; x = this.previous[x])
         {
             path.push(x);
         }

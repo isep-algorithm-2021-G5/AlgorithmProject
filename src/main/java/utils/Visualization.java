@@ -1,5 +1,8 @@
+package utils;
+
 import com.google.common.collect.Multimap;
 import graph.Edge;
+import graph.Graph;
 import graph.Node;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -25,8 +28,10 @@ public class Visualization
     private static final double LAT_DEVIATION = 33.8;
     private static final double LON_DEVIATION = 112.45;
 
-    public static void show(Map<Integer, Node> nodes, Multimap<Integer, Edge> graph)
+    public static void show(Graph graph)
     {
+        Map<Integer, Node> nodes = graph.getNodes();
+        Multimap<Integer, Edge> adjList = graph.getAdjList();
         JFrame jFrame = new JFrame();
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         JPanel jpanel = new JPanel()
@@ -48,7 +53,7 @@ public class Visualization
                 }
                 Node from, to;
                 int fromLat, fromLon, toLat, toLon;
-                for (Edge edge : graph.values())
+                for (Edge edge : adjList.values())
                 {
                     from = nodes.get(edge.getFrom());
                     to = nodes.get(edge.getTo());

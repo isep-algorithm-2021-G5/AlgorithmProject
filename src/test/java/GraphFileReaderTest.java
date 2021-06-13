@@ -1,6 +1,7 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import utils.GraphFileReader;
 import com.csvreader.CsvReader;
 import com.google.common.collect.Multimap;
 import graph.Edge;
