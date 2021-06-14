@@ -22,14 +22,14 @@ public class Main
         Graph graph = new Graph(Path.PHOENIX_STOPS, Path.PHOENIX_GRAPH, 0);
         Graph weightedGraph = new Graph(Path.PHOENIX_STOPS, Path.PHOENIX_WEIGHTED_GRAPH, 1);
 
-        Visualization.show(graph,null);
+        Visualization.show(Mapping.reMapGraph(graph),null);
 
-        graph = Mapping.reMapGraph(graph);
+        Graph  mappedGraph = Mapping.reMapGraph(weightedGraph);
 //        Graph graphConnected = Connectivity.removeIsolated(graph, THRESHOLD);
 //        graphConnected = Mapping.reMapGraph(graphConnected);
 
-        DijkstraShortestPath dij = new DijkstraShortestPath(weightedGraph,10);
-        Visualization.show(graph,dij.getShortestPath(3300));
+        DijkstraShortestPath dij = new DijkstraShortestPath(mappedGraph,10);
+        Visualization.show(mappedGraph,dij.getShortestPath(2000));
 
 
 //        Visualization.show(graphConnected,null);
