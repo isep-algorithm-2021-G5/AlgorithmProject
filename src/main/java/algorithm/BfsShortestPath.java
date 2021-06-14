@@ -26,7 +26,7 @@ public class BfsShortestPath
         val nodes = graph.getNodes();
         val adj = graph.getAdjList();
         //TODO 改成 map
-        int initCapacity = nodes.size() + 100000;
+        int initCapacity = nodes.size();
 
         this.marked = new boolean[initCapacity];
         this.previous = new int[initCapacity];
