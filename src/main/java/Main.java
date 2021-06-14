@@ -1,8 +1,7 @@
-import com.google.common.collect.Multimap;
 import graph.Graph;
-import graph.WeightedEdge;
+import lombok.val;
 import utils.Connectivity;
-import utils.GraphFileReader;
+import utils.Mapping;
 import utils.Visualization;
 
 /**
@@ -21,15 +20,17 @@ public class Main
     public static void main(String[] args)
     {
 
-        Graph graph = new Graph(STOPS, GRAPH);
-
-        Multimap<Integer, WeightedEdge> weightedGraph = GraphFileReader
-                .readWeightedGraph(WEIGHTED_GRAPH);
+        Graph graph = new Graph(STOPS, GRAPH,false);
+        Graph weightedGraph = new Graph(STOPS,WEIGHTED_GRAPH,true);
 
         Visualization.show(graph);
 
         Graph graphConnected = Connectivity.removeIsolated(graph, THRESHOLD);
         Visualization.show(graphConnected);
+
+
+
+        val test = Mapping.getIdMap(graph);
 
         System.out.println(1);
 

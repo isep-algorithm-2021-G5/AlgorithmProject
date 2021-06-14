@@ -1,10 +1,9 @@
 package graph;
 
 import com.google.common.collect.Multimap;
-import java.util.ArrayList;
 import java.util.Map;
 import lombok.Getter;
-import utils.GraphFileReader;
+import utils.GraphReader;
 
 /**
  * @author : Xuan MIAO
@@ -19,10 +18,18 @@ public class Graph
 
     Multimap<Integer, Edge> adjList;
 
-    public Graph(String nodesPath, String graphPath)
+    public Graph(String nodesPath, String graphPath, boolean weighted)
     {
-        this.nodes = GraphFileReader.readNodes(nodesPath);
-        this.adjList = GraphFileReader.readGraph(graphPath);
+        if (weighted = false)
+        {
+            this.nodes = GraphReader.readNodes(nodesPath);
+            this.adjList = GraphReader.readAdjList(graphPath);
+        } else
+        {
+            this.nodes = GraphReader.readNodes(nodesPath);
+            this.adjList = GraphReader.readWeightedAdjList(graphPath);
+        }
+
     }
 
     public Graph(Map<Integer, Node> nodes,

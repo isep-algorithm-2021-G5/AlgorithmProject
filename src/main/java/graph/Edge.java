@@ -19,4 +19,6 @@ public class Edge
 
     private final Integer to;
 
+    private final double weight;
+
 }

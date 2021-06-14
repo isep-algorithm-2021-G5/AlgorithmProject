@@ -61,7 +61,7 @@ def get_stops(trips):
         f_csv = csv.DictReader(f)
         for row in f_csv:
             if row["stop_id"] in used_stops:
-                stops[row["stop_id"]] = {
+                stops[int(row["stop_id"])] = {
                     "lat": float(row["stop_lat"]),
                     "lon": float(row["stop_lon"])
                 }
@@ -75,7 +75,7 @@ def get_adj_list(trips_stops_unique):
             adj_set[s[i]].add(int(s[i + 1]))
     adj_list = defaultdict(list)
     for key in adj_set:
-        adj_list[key] = list(adj_set[key])
+        adj_list[int(key)] = list(adj_set[key])
     return adj_list
 
 
@@ -85,8 +85,8 @@ def get_graph(adj_list, stops):
         for to_id in adj_list[from_id]:
             distance = get_distance(stops[from_id]["lat"],
                                     stops[from_id]["lon"],
-                                    stops[str(to_id)]["lat"],
-                                    stops[str(to_id)]["lon"])
+                                    stops[to_id]["lat"],
+                                    stops[to_id]["lon"])
             graph.append([int(from_id), int(to_id), distance])
 
     return graph

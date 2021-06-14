@@ -5,7 +5,6 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import graph.Edge;
 import graph.Node;
-import graph.WeightedEdge;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -16,7 +15,7 @@ import java.util.Map;
  * @version : 1.0.0
  * @date : 2021/6/13
  */
-public class GraphFileReader
+public class GraphReader
 {
 
     public static Map<Integer, Node> readNodes(String path)
@@ -39,7 +38,7 @@ public class GraphFileReader
         return nodes;
     }
 
-    public static Multimap<Integer, Edge> readGraph(String path)
+    public static Multimap<Integer, Edge> readAdjList(String path)
     {
         Multimap<Integer, Edge> graph = ArrayListMultimap.create();
         try
@@ -50,7 +49,7 @@ public class GraphFileReader
             {
                 graph.put(Integer.valueOf(csvReader.get("from")),
                           new Edge(Integer.valueOf(csvReader.get("from")),
-                                   Integer.valueOf(csvReader.get("to"))));
+                                   Integer.valueOf(csvReader.get("to")), 1D));
             }
             csvReader.close();
         } catch (IOException e)
@@ -60,9 +59,9 @@ public class GraphFileReader
         return graph;
     }
 
-    public static Multimap<Integer, WeightedEdge> readWeightedGraph(String path)
+    public static Multimap<Integer, Edge> readWeightedAdjList(String path)
     {
-        Multimap<Integer, WeightedEdge> weightedGraph = ArrayListMultimap.create();
+        Multimap<Integer, Edge> weightedGraph = ArrayListMultimap.create();
         try
         {
             CsvReader csvReader = new CsvReader(path, ',', StandardCharsets.UTF_8);
@@ -70,7 +69,7 @@ public class GraphFileReader
             while (csvReader.readRecord())
             {
                 weightedGraph.put(Integer.valueOf(csvReader.get("from")),
-                                  new WeightedEdge(Integer.valueOf(csvReader.get("from")),
+                                  new Edge(Integer.valueOf(csvReader.get("from")),
                                                    Integer.valueOf(csvReader.get("to")),
                                                    Double.parseDouble(csvReader.get("weight"))));
             }
