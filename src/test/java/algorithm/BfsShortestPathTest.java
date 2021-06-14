@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BfsShortestPathTest {
 
     BfsShortestPath bfs;
-    Graph graph = new Graph(Path.BFS_NODES,Path.BFS_GRAPH,false);
+    Graph graph = new Graph(Path.BFS_NODES,Path.BFS_GRAPH,0);
 
     @BeforeEach
     void setUp()

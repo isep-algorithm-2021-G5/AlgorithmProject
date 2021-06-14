@@ -18,8 +18,8 @@ public class Main
     public static void main(String[] args)
     {
 
-        Graph graph = new Graph(Path.PHOENIX_STOPS, Path.PHOENIX_GRAPH, false);
-        Graph weightedGraph = new Graph(Path.PHOENIX_STOPS, Path.PHOENIX_WEIGHTED_GRAPH, true);
+        Graph graph = new Graph(Path.PHOENIX_STOPS, Path.PHOENIX_GRAPH, 0);
+        Graph weightedGraph = new Graph(Path.PHOENIX_STOPS, Path.PHOENIX_WEIGHTED_GRAPH, 1);
 
         Visualization.show(graph);
 

@@ -17,7 +17,7 @@ class ClusterBtwTest {
 
     EdgeBtw edgeBtw;
     Cluster cluster;
-    Graph graph = new Graph(Path.CLUSTER_NODES, Path.CLUSTER_GRAPH, false);
+    Graph graph = new Graph(Path.CLUSTER_NODES, Path.CLUSTER_GRAPH, 0);
 
     @BeforeEach
     void setUp()

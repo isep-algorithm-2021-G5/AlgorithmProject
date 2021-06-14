@@ -67,7 +67,7 @@ public class EdgeBtw
 
         for (ShortestPath sp : this.getSpList())
         {
-            List<Integer> shortestPath = sp.getBfsShortestPathList();
+            List<Integer> shortestPath = sp.getShortestPathList();
 
             if (shortestPath.size() > 0)
             {

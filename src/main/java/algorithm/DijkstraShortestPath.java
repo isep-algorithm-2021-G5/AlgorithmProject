@@ -6,7 +6,10 @@ import graph.Distance;
 import graph.Edge;
 import graph.Graph;
 import graph.Node;
+import graph.ShortestPath;
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -35,7 +38,7 @@ public class DijkstraShortestPath
     {
         this.nodes = graph.getNodes();
         this.adjList = graph.getAdjList();
-        int nodeSize = nodes.size();
+        int nodeSize = nodes.size() + 1;
         this.distance = new double[nodeSize];
         this.previous = new int[nodeSize];
         this.pq = new PriorityQueue<>(adjList.size());
@@ -66,25 +69,21 @@ public class DijkstraShortestPath
         double edgeDistance = -1;
         double newDistance = -1;
 
-        // All the neighbors of v
         for (Edge n : adjList.get(now))
         {
             int to = n.getTo();
 
-            // If current node hasn't already been processed
             if (!marked.contains(to))
             {
                 edgeDistance = n.getWeight();
                 newDistance = distance[now] + edgeDistance;
 
-                // If new distance is cheaper in cost
-                if (newDistance < distance[to])
+                if (newDistance <= distance[to])
                 {
                     distance[to] = newDistance;
                     previous[to] = n.getFrom();
                 }
 
-                // Add the current node to the queue
                 pq.add(new Distance(n.getFrom(), to, distance[to]));
             }
         }
@@ -100,7 +99,7 @@ public class DijkstraShortestPath
         return distance[v];
     }
 
-    public String getShortestPathTo(int v)
+    public String getShortestPathString(int v)
     {
         int pre = previous[v];
         Stack<Integer> stack = new Stack<>();
@@ -118,6 +117,28 @@ public class DijkstraShortestPath
         str.append(v);
 
         return str.toString();
+
+    }
+
+    public ShortestPath getShortestPath(int v)
+    {
+        int pre = previous[v];
+        Stack<Integer> stack = new Stack<>();
+        while (pre != this.start)
+        {
+            stack.push(pre);
+            pre = previous[pre];
+        }
+        Deque<Integer> deque = new ArrayDeque<>();
+        deque.add(this.start);
+        int size = stack.size();
+        for (int i = 0; i < size; i++)
+        {
+            deque.add(stack.pop());
+        }
+        deque.add(v);
+
+        return new ShortestPath(this.start, v, deque, distance[v]);
 
     }
 

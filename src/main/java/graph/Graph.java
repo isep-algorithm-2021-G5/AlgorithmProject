@@ -18,16 +18,19 @@ public class Graph
 
     Multimap<Integer, Edge> adjList;
 
-    public Graph(String nodesPath, String graphPath, boolean weighted)
+
+    public Graph(String nodesPath, String graphPath, int type)
     {
-        if (!weighted)
+        this.nodes = GraphReader.readNodes(nodesPath);
+        if (type == 0)
         {
-            this.nodes = GraphReader.readNodes(nodesPath);
             this.adjList = GraphReader.readAdjList(graphPath);
+        } else if (type == 1)
+        {
+            this.adjList = GraphReader.readWeightedAdjList(graphPath);
         } else
         {
-            this.nodes = GraphReader.readNodes(nodesPath);
-            this.adjList = GraphReader.readWeightedAdjList(graphPath);
+            this.adjList = GraphReader.readCapacityAdjList(graphPath);
         }
 
     }

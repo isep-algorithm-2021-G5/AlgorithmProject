@@ -19,7 +19,7 @@ class DijkstraShortestPathTest
 {
 
     DijkstraShortestPath dijkstra;
-    Graph graph = new Graph(Path.DIJKSTRA_NODES, Path.DIJKSTRA_GRAPH, true);
+    Graph graph = new Graph(Path.DIJKSTRA_NODES, Path.DIJKSTRA_GRAPH, 1);
 
 
     @BeforeEach
@@ -44,13 +44,13 @@ class DijkstraShortestPathTest
     @Test
     void getShortestPathTo()
     {
-        assertEquals("0 -> 1",dijkstra.getShortestPathTo(1));
-        assertEquals("0 -> 1 -> 6 -> 2", dijkstra.getShortestPathTo(2));
-        assertEquals("0 -> 1 -> 6 -> 7 -> 3", dijkstra.getShortestPathTo(3));
-        assertEquals("0 -> 4", dijkstra.getShortestPathTo(4));
-        assertEquals("0 -> 1 -> 5", dijkstra.getShortestPathTo(5));
-        assertEquals("0 -> 1 -> 6", dijkstra.getShortestPathTo(6));
-        assertEquals("0 -> 1 -> 6 -> 7", dijkstra.getShortestPathTo(7));
+        assertEquals("0 -> 1",dijkstra.getShortestPathString(1));
+        assertEquals("0 -> 1 -> 6 -> 2", dijkstra.getShortestPathString(2));
+        assertEquals("0 -> 1 -> 6 -> 7 -> 3", dijkstra.getShortestPathString(3));
+        assertEquals("0 -> 4", dijkstra.getShortestPathString(4));
+        assertEquals("0 -> 1 -> 5", dijkstra.getShortestPathString(5));
+        assertEquals("0 -> 1 -> 6", dijkstra.getShortestPathString(6));
+        assertEquals("0 -> 1 -> 6 -> 7", dijkstra.getShortestPathString(7));
     }
 
     @Test

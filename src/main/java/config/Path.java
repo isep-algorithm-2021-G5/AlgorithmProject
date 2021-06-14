@@ -21,4 +21,6 @@ public class Path
     public static final String CLUSTER_GRAPH = "./data/clusterGraphDataSet.csv";
     public static final String CLUSTER_NODES = "./data/clusterNodesDataSet.csv";
 
+    public static final String LAZY_CHEN_GRAPH = "./data/lazyChenGraphDataSet.csv";
+    public static final String LAZY_CHEN_NODES = "./data/lazyChenNodesDataSet.csv";
 }

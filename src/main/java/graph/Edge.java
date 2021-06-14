@@ -10,7 +10,6 @@ import lombok.Getter;
  * @date : 2021/6/13
  */
 @Getter
-@AllArgsConstructor
 @EqualsAndHashCode
 public class Edge
 {
@@ -21,4 +20,29 @@ public class Edge
 
     private final double weight;
 
+    private final Integer capacity;
+
+    public Edge(Integer from, Integer to)
+    {
+        this.from = from;
+        this.to = to;
+        this.weight = 1;
+        this.capacity = null;
+    }
+
+    public Edge(Integer from, Integer to, double weight)
+    {
+        this.from = from;
+        this.to = to;
+        this.weight = weight;
+        this.capacity = null;
+    }
+
+    public Edge(Integer from, Integer to, double weight, Integer capacity)
+    {
+        this.from = from;
+        this.to = to;
+        this.weight = weight;
+        this.capacity = capacity;
+    }
 }

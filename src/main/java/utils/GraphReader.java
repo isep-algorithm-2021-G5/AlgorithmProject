@@ -49,7 +49,7 @@ public class GraphReader
             {
                 graph.put(Integer.valueOf(csvReader.get("from")),
                           new Edge(Integer.valueOf(csvReader.get("from")),
-                                   Integer.valueOf(csvReader.get("to")), 1D));
+                                   Integer.valueOf(csvReader.get("to"))));
             }
             csvReader.close();
         } catch (IOException e)
@@ -81,5 +81,27 @@ public class GraphReader
         return weightedGraph;
     }
 
+    public static Multimap<Integer, Edge> readCapacityAdjList(String path)
+    {
+        Multimap<Integer, Edge> weightedGraph = ArrayListMultimap.create();
+        try
+        {
+            CsvReader csvReader = new CsvReader(path, ',', StandardCharsets.UTF_8);
+            csvReader.readHeaders();
+            while (csvReader.readRecord())
+            {
+                weightedGraph.put(Integer.valueOf(csvReader.get("from")),
+                                  new Edge(Integer.valueOf(csvReader.get("from")),
+                                           Integer.valueOf(csvReader.get("to")),
+                                           Double.parseDouble(csvReader.get("weight")),
+                                           Integer.valueOf(csvReader.get("capacity"))));
+            }
+            csvReader.close();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return weightedGraph;
+    }
 
 }
