@@ -8,6 +8,11 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * @author : Xianqi LIU
+ * @version : 1.0.0
+ * @date : 2021/6/13
+ */
 public class Cluster {
 
     private Graph graph;
@@ -33,7 +38,7 @@ public class Cluster {
 
         while (count < max) {
             //find maxBtwEdge
-            EdgeBTW edgeClustering = new EdgeBTW(this.graph);
+            EdgeBtw edgeClustering = new EdgeBtw(this.graph);
             Edge maxBtwEdge = edgeClustering.getEdgeMaxBTW();
             System.out.println("MaxBtwEdge : " + maxBtwEdge.getFrom() + " --✂-- " + maxBtwEdge.getTo());
 

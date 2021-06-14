@@ -1,8 +1,3 @@
-import algorithm.BfsShortestPath;
-import algorithm.Cluster;
-import algorithm.EdgeBTW;
-import com.google.common.collect.Multimap;
-import graph.Edge;
 import graph.Graph;
 import lombok.val;
 import utils.Connectivity;
@@ -49,7 +44,7 @@ public class Main
         System.out.println(bfsSP.printShortestPath(7));
 
         //test EdgeBetweenness
-        EdgeBTW edgeClustering = new EdgeBTW(graph);
+        EdgeBtw edgeClustering = new EdgeBtw(graph);
         Edge maxBtwEdge = edgeClustering.getEdgeMaxBTW();
         System.out.println("Max Btw Edge: "+maxBtwEdge.getFrom()+" "+maxBtwEdge.getTo());
 
