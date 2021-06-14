@@ -11,6 +11,7 @@ import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Stack;
@@ -123,7 +124,7 @@ public class DijkstraShortestPath
     public ShortestPath getShortestPath(int v)
     {
         int pre = previous[v];
-        Stack<Integer> stack = new Stack<>();
+        Deque<Integer> stack = new LinkedList<>();
         while (pre != this.start)
         {
             stack.push(pre);
@@ -138,7 +139,7 @@ public class DijkstraShortestPath
         }
         deque.add(v);
 
-        return new ShortestPath(this.start, v, deque, distance[v]);
+        return new ShortestPath(this.start, v, deque, distance[v], distance);
 
     }
 

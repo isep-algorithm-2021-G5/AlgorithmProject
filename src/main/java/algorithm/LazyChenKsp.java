@@ -17,7 +17,7 @@ import lombok.val;
  * @version : 1.0.0
  * @date : 2021/6/15
  */
-public class LazyChen
+public class LazyChenKsp
 {
 
     Graph graph;
@@ -26,7 +26,7 @@ public class LazyChen
     Integer sigma;
     List<ShortestPath> shortestPaths;
 
-    public LazyChen(Graph graph, Integer start, Integer end, Integer sigma)
+    public LazyChenKsp(Graph graph, Integer start, Integer end, Integer sigma)
     {
         this.graph = graph;
         this.start = start;

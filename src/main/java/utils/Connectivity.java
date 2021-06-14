@@ -82,7 +82,6 @@ public class Connectivity
             }
 
         }
-        System.out.println(nodes.size());
         return new Graph(nodes, adjList);
     }
 }

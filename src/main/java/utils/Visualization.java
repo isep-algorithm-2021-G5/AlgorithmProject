@@ -4,6 +4,7 @@ import com.google.common.collect.Multimap;
 import graph.Edge;
 import graph.Graph;
 import graph.Node;
+import graph.ShortestPath;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -28,7 +29,7 @@ public class Visualization
     private static final double LAT_DEVIATION = 33.8;
     private static final double LON_DEVIATION = 112.45;
 
-    public static void show(Graph graph)
+    public static void show(Graph graph, ShortestPath sp)
     {
         Map<Integer, Node> nodes = graph.getNodes();
         Multimap<Integer, Edge> adjList = graph.getAdjList();
@@ -61,13 +62,43 @@ public class Visualization
                     fromLon = (int) ((from.getLon() + LON_DEVIATION) * ZOOM_LEVEL);
                     toLat = (int) ((-to.getLat() + LAT_DEVIATION) * ZOOM_LEVEL);
                     toLon = (int) ((to.getLon() + LON_DEVIATION) * ZOOM_LEVEL);
-                    drawArrow(graphics, fromLon, fromLat, toLon, toLat);
+                    drawArrow(graphics, fromLon, fromLat, toLon, toLat, ARR_SIZE, Color.GRAY);
+                }
+                if (sp != null)
+                {
+                    Integer[] path = sp.getShortestPathList().toArray(new Integer[0]);
+                    for (int i = 0; i < path.length - 1; i++)
+                    {
+                        Node f = nodes.get(path[i]);
+                        Node t = nodes.get(path[i + 1]);
+
+                        int fLat = (int) ((-f.getLat() + LAT_DEVIATION) * ZOOM_LEVEL);
+                        int fLon = (int) ((f.getLon() + LON_DEVIATION) * ZOOM_LEVEL);
+                        int tLat = (int) ((-t.getLat() + LAT_DEVIATION) * ZOOM_LEVEL);
+                        int tLon = (int) ((t.getLon() + LON_DEVIATION) * ZOOM_LEVEL);
+                        graphics.setColor(Color.CYAN);
+                        if (i == 0)
+                        {
+                            graphics.setColor(Color.GREEN);
+                            graphics.fillOval(fLon, fLat, 20, 20);
+                        }else
+                        {
+                            graphics.fillOval(fLon, fLat, 5, 5);
+                        }
+                        drawArrow(graphics, fLon, fLat, tLon, tLat, 5, Color.MAGENTA);
+                        if (i == path.length - 2)
+                        {
+                            graphics.setColor(Color.RED);
+                            graphics.fillOval(tLon, fLat, 20, 20);
+                        }
+                    }
+
                 }
 
 
             }
 
-            void drawArrow(Graphics g1, int x1, int y1, int x2, int y2)
+            void drawArrow(Graphics g1, int x1, int y1, int x2, int y2, int arrasSize, Color color)
             {
                 Graphics2D g = (Graphics2D) g1.create();
                 double dx = x2 - x1, dy = y2 - y1;
@@ -76,10 +107,10 @@ public class Visualization
                 AffineTransform at = AffineTransform.getTranslateInstance(x1, y1);
                 at.concatenate(AffineTransform.getRotateInstance(angle));
                 g.transform(at);
-                g.setColor(Color.DARK_GRAY);
+                g.setColor(color);
                 g.drawLine(0, 0, len, 0);
-                g.fillPolygon(new int[]{len, len - ARR_SIZE, len - ARR_SIZE, len},
-                              new int[]{0, -ARR_SIZE, ARR_SIZE, 0}, 4);
+                g.fillPolygon(new int[]{len, len - arrasSize, len - arrasSize, len},
+                              new int[]{0, -arrasSize, arrasSize, 0}, 4);
             }
         };
         jFrame.add(jpanel);

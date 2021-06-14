@@ -14,23 +14,23 @@ import org.junit.jupiter.api.Test;
  * @version : 1.0.0
  * @date : 2021/6/15
  */
-class LazyChenTest
+class LazyChenKspTest
 {
 
-    LazyChen lazyChen;
+    LazyChenKsp lazyChenKsp;
 
     @BeforeEach
     void setUp()
     {
-        lazyChen = new LazyChen(new Graph(Path.LAZY_CHEN_NODES, Path.LAZY_CHEN_GRAPH, 2), 1, 6,
-                                100);
+        lazyChenKsp = new LazyChenKsp(new Graph(Path.LAZY_CHEN_NODES, Path.LAZY_CHEN_GRAPH, 2), 1, 6,
+                                      100);
 
     }
 
     @Test
     void getKshortestPaths()
     {
-        List<ShortestPath> sp = lazyChen.getKshortestPaths(3);
+        List<ShortestPath> sp = lazyChenKsp.getKshortestPaths(3);
         assertEquals(75, sp.get(0).getWeight());
         assertEquals(80, sp.get(1).getWeight());
         assertEquals(85, sp.get(2).getWeight());
