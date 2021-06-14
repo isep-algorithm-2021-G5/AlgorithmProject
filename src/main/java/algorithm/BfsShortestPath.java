@@ -1,16 +1,10 @@
 package algorithm;
 
-import com.google.common.collect.Multimap;
 import graph.Edge;
 import graph.Graph;
-import graph.Node;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Stack;
+
+import java.util.*;
+
 import lombok.val;
 
 /**
@@ -88,20 +82,24 @@ public class BfsShortestPath
     /**
      * print the shortest path from s to v
      */
-    public List<Integer> printShortestPath(int v)
+    public Deque<Integer> printShortestPath(int v)
     {
-        if (!hasPathTo(v))
-        {
+        Deque<Integer> path = new LinkedList<>();
+        boolean done = false;
+        int currentNode = v;
+
+        if (!hasPathTo(v)) {
             return null;
         }
-        Stack<Integer> path = new Stack<>();
-        int x;
-        for (x = v; this.distance[x] != 0; x = this.previous[x])
-        {
-            path.push(x);
+        while (!done) {
+            path.addFirst(currentNode);
+            if (this.distance[currentNode] == 0) {
+                done = true;
+            } else {
+                currentNode = this.previous[currentNode];
+            }
+
         }
-        path.push(x);
-        Collections.reverse(path);
         return path;
     }
 }
