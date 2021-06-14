@@ -38,9 +38,9 @@ class GraphReaderTest
     @Test
     void testSize()
     {
-        assertEquals(nodes.size(), 7772);
-        assertEquals(adjList.size(), 8193);
-        assertEquals(weightedAdjList.size(), 8193);
+        assertEquals(7772, nodes.size());
+        assertEquals(8193, adjList.size());
+        assertEquals(8193, weightedAdjList.size());
     }
 
     @Test
@@ -52,10 +52,10 @@ class GraphReaderTest
             csvReader.readHeaders();
             while (csvReader.readRecord())
             {
-                assertEquals(nodes.get(Integer.valueOf(csvReader.get("id"))).getLon(),
-                             Double.parseDouble(csvReader.get("lon")));
-                assertEquals(nodes.get(Integer.valueOf(csvReader.get("id"))).getLat(),
-                             Double.parseDouble(csvReader.get("lat")));
+                assertEquals(Double.parseDouble(csvReader.get("lon")),
+                             nodes.get(Integer.valueOf(csvReader.get("id"))).getLon());
+                assertEquals(Double.parseDouble(csvReader.get("lat")),
+                             nodes.get(Integer.valueOf(csvReader.get("id"))).getLat());
             }
             csvReader.close();
         } catch (IOException e)

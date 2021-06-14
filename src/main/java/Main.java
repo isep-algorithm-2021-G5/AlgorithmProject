@@ -1,3 +1,4 @@
+import config.Path;
 import graph.Graph;
 import utils.Connectivity;
 import utils.Mapping;
@@ -11,19 +12,14 @@ import utils.Visualization;
 public class Main
 {
 
-    public static final String STOPS = "./data/stops.csv";
-    public static final String GRAPH = "./data/graph.csv";
-    public static final String WEIGHTED_GRAPH = "./data/graph.csv";
-    public static final int THRESHOLD = 6959;
 
-//    public static final String STOPS = "./data/processed/clusterNodesDataSet.csv";
-//    public static final String GRAPH = "./data/processed/clusterGraphDataSet.csv";
+    private static final int THRESHOLD = 6959;
 
     public static void main(String[] args)
     {
 
-        Graph graph = new Graph(STOPS, GRAPH, false);
-        Graph weightedGraph = new Graph(STOPS, WEIGHTED_GRAPH, true);
+        Graph graph = new Graph(Path.PHOENIX_STOPS, Path.PHOENIX_GRAPH, false);
+        Graph weightedGraph = new Graph(Path.PHOENIX_STOPS, Path.PHOENIX_WEIGHTED_GRAPH, true);
 
         Visualization.show(graph);
 
