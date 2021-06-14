@@ -70,8 +70,8 @@ public class GraphReader
             {
                 weightedGraph.put(Integer.valueOf(csvReader.get("from")),
                                   new Edge(Integer.valueOf(csvReader.get("from")),
-                                                   Integer.valueOf(csvReader.get("to")),
-                                                   Double.parseDouble(csvReader.get("weight"))));
+                                           Integer.valueOf(csvReader.get("to")),
+                                           Double.parseDouble(csvReader.get("weight"))));
             }
             csvReader.close();
         } catch (IOException e)

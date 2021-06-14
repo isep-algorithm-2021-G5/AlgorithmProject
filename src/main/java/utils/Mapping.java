@@ -49,7 +49,7 @@ public class Mapping
                                     idMap.get(entry.getValue().getTo()),
                                     entry.getValue().getWeight()));
         }
-        return new Graph(newNodes,newAdjList);
+        return new Graph(newNodes, newAdjList);
     }
 
 }

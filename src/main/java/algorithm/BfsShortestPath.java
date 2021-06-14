@@ -2,9 +2,10 @@ package algorithm;
 
 import graph.Edge;
 import graph.Graph;
-
-import java.util.*;
-
+import java.util.Collection;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
 import lombok.val;
 
 /**
@@ -88,14 +89,18 @@ public class BfsShortestPath
         boolean done = false;
         int currentNode = v;
 
-        if (!hasPathTo(v)) {
+        if (!hasPathTo(v))
+        {
             return null;
         }
-        while (!done) {
+        while (!done)
+        {
             path.addFirst(currentNode);
-            if (this.distance[currentNode] == 0) {
+            if (this.distance[currentNode] == 0)
+            {
                 done = true;
-            } else {
+            } else
+            {
                 currentNode = this.previous[currentNode];
             }
 

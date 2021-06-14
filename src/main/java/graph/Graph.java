@@ -20,7 +20,7 @@ public class Graph
 
     public Graph(String nodesPath, String graphPath, boolean weighted)
     {
-        if (weighted = false)
+        if (!weighted)
         {
             this.nodes = GraphReader.readNodes(nodesPath);
             this.adjList = GraphReader.readAdjList(graphPath);

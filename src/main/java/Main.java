@@ -1,5 +1,4 @@
 import graph.Graph;
-import lombok.val;
 import utils.Connectivity;
 import utils.Mapping;
 import utils.Visualization;
@@ -23,8 +22,8 @@ public class Main
     public static void main(String[] args)
     {
 
-        Graph graph = new Graph(STOPS, GRAPH,false);
-        Graph weightedGraph = new Graph(STOPS,WEIGHTED_GRAPH,true);
+        Graph graph = new Graph(STOPS, GRAPH, false);
+        Graph weightedGraph = new Graph(STOPS, WEIGHTED_GRAPH, true);
 
         Visualization.show(graph);
 
@@ -33,7 +32,6 @@ public class Main
         Graph graphConnected = Connectivity.removeIsolated(graph, THRESHOLD);
         graphConnected = Mapping.reMapGraph(graphConnected);
         Visualization.show(graphConnected);
-
 
         System.out.println(1);
 
