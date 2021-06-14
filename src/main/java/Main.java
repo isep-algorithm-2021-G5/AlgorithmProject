@@ -12,9 +12,9 @@ import utils.Visualization;
 public class Main
 {
 
-    public static final String STOPS = "./data/processed/stops.csv";
-    public static final String GRAPH = "./data/processed/graph.csv";
-    public static final String WEIGHTED_GRAPH = "./data/processed/graph.csv";
+    public static final String STOPS = "./data/stops.csv";
+    public static final String GRAPH = "./data/graph.csv";
+    public static final String WEIGHTED_GRAPH = "./data/graph.csv";
     public static final int THRESHOLD = 6959;
 
 //    public static final String STOPS = "./data/processed/clusterNodesDataSet.csv";
@@ -28,12 +28,12 @@ public class Main
 
         Visualization.show(graph);
 
+        graph = Mapping.reMapGraph(graph);
+
         Graph graphConnected = Connectivity.removeIsolated(graph, THRESHOLD);
+        graphConnected = Mapping.reMapGraph(graphConnected);
         Visualization.show(graphConnected);
 
-
-
-        val test = Mapping.getIdMap(graph);
 
         System.out.println(1);
 
@@ -45,7 +45,7 @@ public class Main
 
         //test EdgeBetweenness
         EdgeBtw edgeClustering = new EdgeBtw(graph);
-        Edge maxBtwEdge = edgeClustering.getEdgeMaxBTW();
+        Edge maxBtwEdge = edgeClustering.getEdgeMaxBtw();
         System.out.println("Max Btw Edge: "+maxBtwEdge.getFrom()+" "+maxBtwEdge.getTo());
 
         //test Cluster
