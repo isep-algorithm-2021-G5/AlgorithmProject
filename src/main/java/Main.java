@@ -30,22 +30,5 @@ public class Main
         Visualization.show(graphConnected);
 
         System.out.println(1);
-
-
-/*        //test BfsShortestPath
-        BfsShortestPath bfsSP = new BfsShortestPath(graph,2);
-        System.out.println(bfsSP.hasPathTo(7));
-        System.out.println(bfsSP.printShortestPath(7));
-
-        //test EdgeBetweenness
-        EdgeBtw edgeClustering = new EdgeBtw(graph);
-        Edge maxBtwEdge = edgeClustering.getEdgeMaxBtw();
-        System.out.println("Max Btw Edge: "+maxBtwEdge.getFrom()+" "+maxBtwEdge.getTo());
-
-        //test Cluster
-        Cluster cluster = new Cluster(graph);
-        cluster.findClusters(2);*/
     }
-
-
 }

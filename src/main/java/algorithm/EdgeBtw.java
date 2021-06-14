@@ -100,7 +100,7 @@ public class EdgeBtw
         return targetEdge;
     }
 
-    public Edge getEdgeMaxBtw()
+    public Edge getMaxBtwEdge()
     {
         Edge maxBtwEdge = this.getAllEdges().get(0);
         Map<Edge, Integer> edgeBtw = this.getEdgeBtw();

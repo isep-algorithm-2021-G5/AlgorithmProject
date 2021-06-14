@@ -14,4 +14,11 @@ public class Path
 
     public static final String DIJKSTRA_GRAPH = "./data/dijkstraGraphDataSet.csv";
     public static final String DIJKSTRA_NODES = "./data/dijkstraNodesDataSet.csv";
+
+    public static final String BFS_GRAPH = "./data/bfsGraphDataSet.csv";
+    public static final String BFS_NODES = "./data/bfsNodesDataSet.csv";
+
+    public static final String CLUSTER_GRAPH = "./data/clusterGraphDataSet.csv";
+    public static final String CLUSTER_NODES = "./data/clusterNodesDataSet.csv";
+
 }

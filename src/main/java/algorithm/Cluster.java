@@ -14,6 +14,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class Cluster
 {
+    private int clusterCount;
+    private final ArrayList<ArrayList<Integer>> resultSet = new ArrayList<>();
 
     private Graph graph;
 
@@ -32,10 +34,11 @@ public class Cluster
         this.graph = graph;
     }
 
-    public void findClusters(int max)
+    public void getClusters(int max)
     {
         int count = 1;
-        CopyOnWriteArrayList<ArrayList<Integer>> clusterList = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<ArrayList<Integer>> clusterList
+                = new CopyOnWriteArrayList<>();
         ArrayList<Integer> cluster1 = new ArrayList<>();
         clusterList.add(cluster1);
         Set<Integer> addedNodes = new TreeSet<>();
@@ -44,7 +47,7 @@ public class Cluster
         {
             //find maxBtwEdge
             EdgeBtw edgeClustering = new EdgeBtw(this.graph);
-            Edge maxBtwEdge = edgeClustering.getEdgeMaxBtw();
+            Edge maxBtwEdge = edgeClustering.getMaxBtwEdge();
             System.out.println(
                     "MaxBtwEdge : " + maxBtwEdge.getFrom() + " --✂-- " + maxBtwEdge.getTo());
 
@@ -118,8 +121,21 @@ public class Cluster
             for (ArrayList<Integer> cluster : clusterList)
             {
                 int clusterIndex = clusterList.indexOf(cluster) + 1;
-                System.out.println("Cluster " + clusterIndex + " : " + cluster);
+                System.out.println(clusterIndex +":"+ cluster);
+                this.clusterCount = clusterIndex;
+                this.resultSet.add(cluster);
             }
+
         }
+    }
+
+    public int getClusterCount()
+    {
+        return this.clusterCount;
+    }
+
+    public ArrayList<ArrayList<Integer>> getResultSet()
+    {
+        return this.resultSet;
     }
 }
