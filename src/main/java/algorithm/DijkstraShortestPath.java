@@ -1,6 +1,7 @@
 package algorithm;
 
 
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import graph.Distance;
 import graph.Edge;
@@ -14,6 +15,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Set;
 import java.util.Stack;
 import lombok.Getter;
 
@@ -35,10 +37,11 @@ public class DijkstraShortestPath
     private final Map<Integer, Node> nodes;
     private final Multimap<Integer, Edge> adjList;
 
-    public DijkstraShortestPath(Graph graph, Integer start)
+    public DijkstraShortestPath(Graph graph, Integer start, Set<Integer> banNodes,
+                                Set<Edge> banEdges)
     {
         this.nodes = graph.getNodes();
-        this.adjList = graph.getAdjList();
+        this.adjList = ArrayListMultimap.create(graph.getAdjList());
         int nodeSize = nodes.size() + 1;
         this.distance = new double[nodeSize];
         this.previous = new int[nodeSize];
@@ -48,6 +51,24 @@ public class DijkstraShortestPath
 
         Arrays.fill(distance, Double.MAX_VALUE);
         distance[start] = 0;
+
+        if (banNodes != null && banNodes.size() != 0)
+        {
+            marked.addAll(banNodes);
+        }
+
+        if (banNodes != null && banNodes.size() != 0)
+        {
+            for (Edge e : banEdges)
+            {
+                Set<Edge> set = new HashSet<>(adjList.get(e.getFrom()));
+                set.remove(e);
+                adjList.removeAll(e.getFrom());
+                e.setWeight(Integer.MAX_VALUE);
+                set.add(e);
+                adjList.putAll(e.getFrom(),set);
+            }
+        }
 
         pq.add(new Distance(start, start, 0));
 
@@ -102,6 +123,10 @@ public class DijkstraShortestPath
 
     public String getShortestPathString(int v)
     {
+        if (!hasPathTo(v))
+        {
+            return null;
+        }
         int pre = previous[v];
         Stack<Integer> stack = new Stack<>();
         while (pre != this.start)
@@ -123,6 +148,10 @@ public class DijkstraShortestPath
 
     public ShortestPath getShortestPath(int v)
     {
+        if (!hasPathTo(v))
+        {
+            return null;
+        }
         int pre = previous[v];
         Deque<Integer> stack = new LinkedList<>();
         while (pre != this.start)

@@ -25,7 +25,7 @@ class DijkstraShortestPathTest
     @BeforeEach
     void setUp()
     {
-        dijkstra = new DijkstraShortestPath(graph, 0);
+        dijkstra = new DijkstraShortestPath(graph, 0, null, null);
     }
 
     @Test
@@ -44,7 +44,7 @@ class DijkstraShortestPathTest
     @Test
     void getShortestPathTo()
     {
-        assertEquals("0 -> 1",dijkstra.getShortestPathString(1));
+        assertEquals("0 -> 1", dijkstra.getShortestPathString(1));
         assertEquals("0 -> 1 -> 6 -> 2", dijkstra.getShortestPathString(2));
         assertEquals("0 -> 1 -> 6 -> 7 -> 3", dijkstra.getShortestPathString(3));
         assertEquals("0 -> 4", dijkstra.getShortestPathString(4));
@@ -56,7 +56,11 @@ class DijkstraShortestPathTest
     @Test
     void getDistance()
     {
-        double[] distance = {0,1,8,16,5,9,6,10,Double.MAX_VALUE,Double.MAX_VALUE};
-        assertEquals(Arrays.toString(distance), Arrays.toString(dijkstra.getDistance()));
+        double[] distance = {0, 1, 8, 16, 5, 9, 6, 10};
+        double[] dijDistance = dijkstra.getDistance();
+        for (int i = 0; i < distance.length; i++)
+        {
+            assertEquals(distance[i],dijDistance[i]);
+        }
     }
 }

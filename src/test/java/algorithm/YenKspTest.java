@@ -1,14 +1,14 @@
 package algorithm;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import config.Path;
 import graph.Graph;
 import graph.ShortestPath;
-import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utils.Mapping;
 
 /**
  * @author : Xuan MIAO
@@ -17,19 +17,31 @@ import org.junit.jupiter.api.Test;
  */
 class YenKspTest
 {
+
     Graph graph = new Graph(Path.DIJKSTRA_NODES, Path.DIJKSTRA_GRAPH, 1);
+    Graph bus = new Graph(Path.PHOENIX_STOPS, Path.PHOENIX_WEIGHTED_GRAPH, 1);
+    Graph mappedGraph = Mapping.reMapGraph(bus);
     YenKsp yenKsp;
 
     @BeforeEach
     void setUp()
     {
-        yenKsp = new YenKsp(graph,0,3,3);
+
     }
 
     @Test
     void getShortestPaths()
     {
+        yenKsp = new YenKsp(graph, 0, 6, 3);
         Set<ShortestPath> sps = yenKsp.getShortestPaths();
-        System.out.println(1);
+        assertEquals(3,sps.size());
+    }
+
+    @Test
+    void getBusShortestPaths()
+    {
+        yenKsp = new YenKsp(mappedGraph, 0, 3300, 3);
+        Set<ShortestPath> sps = yenKsp.getShortestPaths();
+        assertEquals(3,sps.size());
     }
 }

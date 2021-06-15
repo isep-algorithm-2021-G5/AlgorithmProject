@@ -9,7 +9,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -29,7 +31,7 @@ public class Visualization
     private static final double LAT_DEVIATION = 33.8;
     private static final double LON_DEVIATION = 112.45;
 
-    public static void show(Graph graph, ShortestPath sp)
+    public static void show(Graph graph, Set<ShortestPath> sps)
     {
         Map<Integer, Node> nodes = graph.getNodes();
         Multimap<Integer, Edge> adjList = graph.getAdjList();
@@ -64,7 +66,20 @@ public class Visualization
                     toLon = (int) ((to.getLon() + LON_DEVIATION) * ZOOM_LEVEL);
                     drawArrow(graphics, fromLon, fromLat, toLon, toLat, ARR_SIZE, Color.GRAY);
                 }
-                if (sp != null)
+                if (sps != null)
+                {
+                    drawShortestPath(graphics,sps);
+
+                }
+
+
+            }
+
+            void drawShortestPath(Graphics g, Set<ShortestPath> sps)
+            {
+                int c = 1;
+                Color color;
+                for (ShortestPath sp : sps)
                 {
                     Integer[] path = sp.getShortestPathList().toArray(new Integer[0]);
                     for (int i = 0; i < path.length - 1; i++)
@@ -76,26 +91,37 @@ public class Visualization
                         int fLon = (int) ((f.getLon() + LON_DEVIATION) * ZOOM_LEVEL);
                         int tLat = (int) ((-t.getLat() + LAT_DEVIATION) * ZOOM_LEVEL);
                         int tLon = (int) ((t.getLon() + LON_DEVIATION) * ZOOM_LEVEL);
-                        graphics.setColor(Color.CYAN);
+                        g.setColor(Color.CYAN);
                         if (i == 0)
                         {
-                            graphics.setColor(Color.GREEN);
-                            graphics.fillOval(fLon, fLat, 20, 20);
-                        }else
+                            g.setColor(Color.GREEN);
+                            g.fillOval(fLon, fLat, 20, 20);
+                        } else
                         {
-                            graphics.fillOval(fLon, fLat, 5, 5);
+//                            g.fillOval(fLon, fLat, 5, 5);
                         }
-                        drawArrow(graphics, fLon, fLat, tLon, tLat, 5, Color.MAGENTA);
+                        switch (c%3){
+                            case 1:
+                                color = Color.MAGENTA;
+                                break;
+                            case 2:
+                                color = Color.ORANGE;
+                                break;
+                            case 0:
+                                color = Color.CYAN;
+                                break;
+                            default:
+                                color = Color.RED;
+                        }
+                        drawArrow(g, fLon, fLat, tLon, tLat, 5, color);
                         if (i == path.length - 2)
                         {
-                            graphics.setColor(Color.RED);
-                            graphics.fillOval(tLon, fLat, 20, 20);
+                            g.setColor(Color.RED);
+                            g.fillOval(tLon, fLat, 20, 20);
                         }
+                        c++;
                     }
-
                 }
-
-
             }
 
             void drawArrow(Graphics g1, int x1, int y1, int x2, int y2, int arrasSize, Color color)

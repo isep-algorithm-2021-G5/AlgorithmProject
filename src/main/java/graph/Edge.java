@@ -1,8 +1,10 @@
 package graph;
 
+import com.google.common.base.Objects;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author : Xuan MIAO
@@ -10,7 +12,6 @@ import lombok.Getter;
  * @date : 2021/6/13
  */
 @Getter
-@EqualsAndHashCode
 public class Edge
 {
 
@@ -18,7 +19,8 @@ public class Edge
 
     private final Integer to;
 
-    private final double weight;
+    @Setter
+    private double weight;
 
     private final Integer capacity;
 
@@ -44,5 +46,27 @@ public class Edge
         this.to = to;
         this.weight = weight;
         this.capacity = capacity;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o)
+        {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass())
+        {
+            return false;
+        }
+        Edge edge = (Edge) o;
+        return this.from.equals(edge.from)
+                && this.to.equals(edge.to);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hashCode(getFrom(), getTo());
     }
 }

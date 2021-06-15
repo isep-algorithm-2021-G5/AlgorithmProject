@@ -1,7 +1,9 @@
 package algorithm;
 
+import graph.Edge;
 import graph.Graph;
 import graph.ShortestPath;
+import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.TreeSet;
@@ -19,6 +21,9 @@ public class YenKsp
     @Getter
     private final Set<ShortestPath> shortestPaths = new TreeSet<>();
     private final Graph graph;
+    private Set<Integer> banNodes;
+    private Set<Edge> banEdges;
+
 
     public YenKsp(Graph graph, Integer start, Integer end, Integer k)
     {
@@ -26,12 +31,13 @@ public class YenKsp
         this.start = start;
         this.end = end;
         this.graph = graph;
-        DijkstraShortestPath dij = new DijkstraShortestPath(graph, start);
+        DijkstraShortestPath dij = new DijkstraShortestPath(graph, start, null, null);
         ShortestPath sp = dij.getShortestPath(end);
         shortestPaths.add(sp);
 
         while (shortestPaths.size() < k)
         {
+
             ShortestPath second = getSecondShort(sp);
             if (second == null)
             {
@@ -46,19 +52,37 @@ public class YenKsp
 
     private ShortestPath getSecondShort(ShortestPath sp)
     {
+
         PriorityQueue<ShortestPath> paths = new PriorityQueue<>();
         Integer[] path = sp.getShortestPathList().toArray(new Integer[0]);
-        for (int i = 2; i < path.length ; i++)
+        for (int i = 1; i < path.length; i++)
         {
+            Integer now = path[i - 1];
+            Integer[] tmp;
+            banEdges = new HashSet<>();
+            for (ShortestPath s : shortestPaths)
+            {
+                tmp = s.getShortestPathList().toArray(new Integer[0]);
+                for (int j = 0; j < tmp.length-1; j++)
+                {
+                    if (tmp[j].equals(now))
+                    {
+                        banEdges.add(new Edge(tmp[j], tmp[j + 1], Integer.MAX_VALUE));
+                    }
+                }
+            }
+            banNodes = new HashSet<>();
             ShortestPath s = (ShortestPath) sp.clone();
             s.split(i);
-            DijkstraShortestPath dij = new DijkstraShortestPath(graph, path[i]);
+            banNodes.addAll(s.getShortestPathList());
+            DijkstraShortestPath dij = new DijkstraShortestPath(graph, now, banNodes,
+                                                                banEdges);
             s.merge(dij.getShortestPath(end));
             paths.add(s);
         }
         for (ShortestPath res : paths)
         {
-            if (!shortestPaths.contains(res))
+            if (res.getWeight() < Integer.MAX_VALUE)
             {
                 return paths.remove();
             }

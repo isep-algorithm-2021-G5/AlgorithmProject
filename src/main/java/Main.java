@@ -1,4 +1,5 @@
 import algorithm.DijkstraShortestPath;
+import algorithm.YenKsp;
 import config.Path;
 import graph.Graph;
 import utils.Connectivity;
@@ -28,8 +29,9 @@ public class Main
 //        Graph graphConnected = Connectivity.removeIsolated(graph, THRESHOLD);
 //        graphConnected = Mapping.reMapGraph(graphConnected);
 
-        DijkstraShortestPath dij = new DijkstraShortestPath(mappedGraph,10);
-        Visualization.show(mappedGraph,dij.getShortestPath(2000));
+
+        YenKsp yenKsp = new YenKsp(mappedGraph,0,7700,3);
+        Visualization.show(mappedGraph,yenKsp.getShortestPaths());
 
 
 //        Visualization.show(graphConnected,null);

@@ -62,9 +62,10 @@ public class ShortestPath implements Comparable<ShortestPath>, Cloneable
 
     public void merge(ShortestPath sp)
     {
+        assert sp.src == this.dest;
+        this.shortestPath.removeLast();
         this.shortestPath.addAll(sp.getShortestPathList());
         this.weight += sp.getWeight();
-        this.weight += (distance[sp.getSrc()]-distance[this.dest]);
         this.dest = sp.dest;
     }
 
@@ -95,7 +96,7 @@ public class ShortestPath implements Comparable<ShortestPath>, Cloneable
 
         ShortestPath path1 = (ShortestPath) o;
         return this.getShortestPathList() != null ?
-               this.getShortestPathList().equals(path1.getShortestPathList()) :
+               this.getShortestPathList().toString().equals(path1.getShortestPathList().toString()) :
                path1.shortestPath == null;
     }
 
