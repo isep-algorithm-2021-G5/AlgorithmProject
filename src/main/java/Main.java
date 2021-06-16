@@ -68,6 +68,28 @@ public class Main
                 ShortestPath sp = new ShortestPath(10,2000,bfs.getShortestPath(2000));
                 DijkstraShortestPath dij2 = new DijkstraShortestPath(mappedGraph, 10, null, null);
                 ShortestPath sp2 = dij2.getShortestPath(2000);
+                System.out.println("BFS Shortest Path: "+10+" -> "+2000);
+                System.out.println("The stops number passed is: " + sp.getShortestPathList().size());
+                for(int i = 0; i < sp.getShortestPathList().size()-1; i++){
+                    System.out.print(sp.getShortestPathList().get(i) + "->");
+                    if(i % 20 == 0 && i != 0)
+                    {
+                        System.out.println();
+                    }
+                }
+                System.out.print(2000);
+                System.out.println();
+                System.out.println("Dijkstra Shortest Path: "+10+" -> "+2000);
+                System.out.println("The stops weight is: " + sp2.getWeight());
+                for(int i = 0; i < sp2.getShortestPathList().size() -1; i++){
+                    System.out.print(sp2.getShortestPathList().get(i) + "->");
+                    if(i % 20 == 0 && i != 0)
+                    {
+                        System.out.println();
+                    }
+                }
+                System.out.print(2000);
+                System.out.println();
                 Set<ShortestPath> spSet = new TreeSet<>();
                 spSet.add(sp);
                 spSet.add(sp2);

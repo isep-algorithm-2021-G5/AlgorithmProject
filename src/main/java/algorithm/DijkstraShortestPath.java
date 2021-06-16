@@ -43,6 +43,7 @@ public class DijkstraShortestPath
     {
         Map<Integer, Node> nodes = graph.getNodes();
         this.adjList = ArrayListMultimap.create(graph.getAdjList());
+        // +1 to process node id start from 1
         int nodeSize = nodes.size() + 1;
         this.distance = new double[nodeSize];
         this.previous = new int[nodeSize];

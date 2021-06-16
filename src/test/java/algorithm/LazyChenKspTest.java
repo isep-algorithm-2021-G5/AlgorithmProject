@@ -28,7 +28,7 @@ class LazyChenKspTest
     }
 
     @Test
-    void getKshortestPaths()
+    void getKShortestPaths()
     {
         List<ShortestPath> sp = lazyChenKsp.getKshortestPaths(3);
         assertEquals(75, sp.get(0).getWeight());
