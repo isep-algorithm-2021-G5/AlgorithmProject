@@ -88,8 +88,8 @@ public class DijkstraShortestPath
 
     private void calculate(int now)
     {
-        double edgeDistance = -1;
-        double newDistance = -1;
+        double edgeDistance;
+        double newDistance;
 
         for (Edge n : adjList.get(now))
         {
