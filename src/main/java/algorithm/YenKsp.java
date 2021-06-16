@@ -17,12 +17,13 @@ import lombok.Getter;
 public class YenKsp
 {
 
-    private final Integer start, end;
+    @Getter
+    private final Integer start;
+    @Getter
+    private final Integer end;
     @Getter
     private final Set<ShortestPath> shortestPaths = new TreeSet<>();
     private final Graph graph;
-    private Set<Integer> banNodes;
-    private Set<Edge> banEdges;
 
 
     public YenKsp(Graph graph, Integer start, Integer end, Integer k)
@@ -59,7 +60,7 @@ public class YenKsp
         {
             Integer now = path[i - 1];
             Integer[] tmp;
-            banEdges = new HashSet<>();
+            Set<Edge> banEdges = new HashSet<>();
             for (ShortestPath s : shortestPaths)
             {
                 tmp = s.getShortestPathList().toArray(new Integer[0]);
@@ -71,8 +72,8 @@ public class YenKsp
                     }
                 }
             }
-            banNodes = new HashSet<>();
-            ShortestPath s = (ShortestPath) sp.clone();
+            Set<Integer> banNodes = new HashSet<>();
+            ShortestPath s = sp.copy();
             s.split(i);
             banNodes.addAll(s.getShortestPathList());
             DijkstraShortestPath dij = new DijkstraShortestPath(graph, now, banNodes,

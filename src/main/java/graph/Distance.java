@@ -1,6 +1,5 @@
 package graph;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 
@@ -10,7 +9,6 @@ import lombok.NonNull;
  * @date : 2021/6/13
  */
 @Getter
-@EqualsAndHashCode(callSuper = true)
 public class Distance extends Edge implements Comparable<Distance>
 {
 

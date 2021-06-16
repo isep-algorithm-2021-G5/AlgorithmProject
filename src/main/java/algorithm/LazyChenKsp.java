@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.TreeSet;
+import lombok.Getter;
 import lombok.val;
 
 /**
@@ -21,8 +22,11 @@ public class LazyChenKsp
 {
 
     Graph graph;
+    @Getter
     Integer start;
+    @Getter
     Integer end;
+    @Getter
     Integer sigma;
     List<ShortestPath> shortestPaths;
 
@@ -49,7 +53,7 @@ public class LazyChenKsp
         int kk = k > shortestPaths.size() ? shortestPaths.size() : k;
         PriorityQueue<ShortestPath> spSorted = new PriorityQueue<>(shortestPaths);
         List<ShortestPath> res = new ArrayList<>();
-        for (int i = 0; i < k; i++)
+        for (int i = 0; i < kk; i++)
         {
             res.add(spSorted.remove());
         }

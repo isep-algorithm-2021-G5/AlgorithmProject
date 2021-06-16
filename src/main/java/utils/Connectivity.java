@@ -18,8 +18,13 @@ import lombok.val;
  * @version : 1.0.0
  * @date : 2021/6/14
  */
-public class Connectivity
+public final class Connectivity
 {
+
+    private Connectivity()
+    {
+        //Won't be called
+    }
 
     /**
      * Calculate each node can connect to how many other nodes

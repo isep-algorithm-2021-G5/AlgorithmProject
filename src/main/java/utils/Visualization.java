@@ -20,7 +20,7 @@ import javax.swing.WindowConstants;
  * @version : 1.0.0
  * @date : 2021/6/14
  */
-public class Visualization
+public final class Visualization
 {
 
     private static final int ARR_SIZE = 3;
@@ -29,6 +29,11 @@ public class Visualization
     private static final int ZOOM_LEVEL = 1600;
     private static final double LAT_DEVIATION = 33.8;
     private static final double LON_DEVIATION = 112.45;
+
+    private Visualization()
+    {
+        //Won't be called
+    }
 
     public static void show(Graph graph, Set<ShortestPath> sps)
     {
@@ -128,7 +133,8 @@ public class Visualization
     {
 
         Graphics2D g2D = (Graphics2D) g.create();
-        double dx = x2 - x1, dy = y2 - y1;
+        double dx = (double) x2 - x1;
+        double dy = (double) y2 - y1;
         double angle = Math.atan2(dy, dx);
         int len = (int) Math.sqrt(dx * dx + dy * dy);
         AffineTransform at = AffineTransform.getTranslateInstance(x1, y1);

@@ -1,6 +1,5 @@
 package graph;
 
-import com.sun.istack.internal.NotNull;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -17,67 +16,66 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ShortestPath implements Comparable<ShortestPath>, Cloneable
+public class ShortestPath implements Comparable<ShortestPath>
 {
 
     private int src;
     private int dest;
-    private Deque<Integer> shortestPath;
+    private Deque<Integer> sp;
     private double weight;
     private double[] distance;
 
-    public ShortestPath(int src, int dest, Deque<Integer> shortestPath)
+    public ShortestPath(int src, int dest, Deque<Integer> sp)
     {
         this.src = src;
         this.dest = dest;
-        this.shortestPath = shortestPath;
+        this.sp = sp;
         this.weight = 0;
     }
 
-    public ShortestPath(int src, int dest, Deque<Integer> shortestPath, double weight)
+    public ShortestPath(int src, int dest, Deque<Integer> sp, double weight)
     {
         this.src = src;
         this.dest = dest;
-        this.shortestPath = shortestPath;
+        this.sp = sp;
         this.weight = weight;
     }
 
     public List<Integer> getShortestPathList()
     {
-        return new ArrayList<>(this.shortestPath);
+        return new ArrayList<>(this.sp);
     }
 
     public void split(Integer index)
     {
-        Integer[] pathV = this.shortestPath.toArray(new Integer[0]);
+        Integer[] pathV = this.sp.toArray(new Integer[0]);
         this.dest = pathV[index - 1];
         Deque<Integer> path = new ArrayDeque<>();
         for (int i = 0; i < index; i++)
         {
-            path.add(shortestPath.pop());
+            path.add(sp.pop());
         }
-        this.shortestPath = path;
+        this.sp = path;
         this.weight = distance[dest];
     }
 
     public void merge(ShortestPath sp)
     {
-        assert sp.src == this.dest;
-        this.shortestPath.removeLast();
-        this.shortestPath.addAll(sp.getShortestPathList());
+        this.sp.removeLast();
+        this.sp.addAll(sp.getShortestPathList());
         this.weight += sp.getWeight();
         this.dest = sp.dest;
     }
 
     @Override
-    public int compareTo(@NotNull ShortestPath o)
+    public int compareTo(ShortestPath o)
     {
         if (Double.compare(this.weight, o.weight) != 0)
         {
             return Double.compare(this.weight, o.weight);
         } else
         {
-            return -Integer.compare(this.shortestPath.size(), o.shortestPath.size());
+            return Integer.compare(o.sp.size(), this.sp.size());
         }
 
     }
@@ -98,7 +96,7 @@ public class ShortestPath implements Comparable<ShortestPath>, Cloneable
         return this.getShortestPathList() != null ?
                this.getShortestPathList().toString()
                        .equals(path1.getShortestPathList().toString()) :
-               path1.shortestPath == null;
+               path1.sp == null;
     }
 
     @Override
@@ -107,17 +105,9 @@ public class ShortestPath implements Comparable<ShortestPath>, Cloneable
         return this.getShortestPathList().toString().hashCode();
     }
 
-    @Override
-    public Object clone()
+    public ShortestPath copy()
     {
-        try
-        {
-            Object clone = super.clone();
-        } catch (CloneNotSupportedException e)
-        {
-            e.printStackTrace();
-        }
-        Deque<Integer> d = new ArrayDeque<Integer>(this.shortestPath);
+        Deque<Integer> d = new ArrayDeque<>(this.sp);
         return new ShortestPath(this.src, this.dest, d, this.weight, this.distance);
     }
 }

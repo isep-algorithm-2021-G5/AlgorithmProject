@@ -3,6 +3,7 @@ package algorithm;
 import graph.Edge;
 import graph.Graph;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -64,52 +65,46 @@ public class Cluster
                 {
                     for (int dest : nodeSet)
                     {
-                        if (!addedNodes.contains(dest))
+                        if (!addedNodes.contains(dest) && src != dest)
                         {
-                            if (src != dest)
+                            BfsShortestPath bfsShortestPath = new BfsShortestPath(newGraph,
+                                                                                  src);
+                            if (!bfsShortestPath.hasPathTo(dest))
                             {
-                                BfsShortestPath bfsShortestPath = new BfsShortestPath(newGraph,
-                                                                                      src);
-                                if (!bfsShortestPath.hasPathTo(dest))
+                                if (currentCluster.contains(src) && !currentCluster
+                                        .contains(dest))
                                 {
-                                    //for (ArrayList<Integer> cluster : clusterList) {
-                                    if (currentCluster.contains(src) && !currentCluster
-                                            .contains(dest))
+                                    if (count < max)
                                     {
-                                        if (count < max)
+                                        ArrayList<Integer> newCluster = new ArrayList<>();
+                                        newCluster.add(dest);
+                                        addedNodes.add(dest);
+                                        clusterList.add(newCluster);
+                                        count += 1;
+                                        currentCluster = newCluster;
+                                    } else
+                                    {
+                                        for (Integer node : nodeSet)
                                         {
-                                            ArrayList<Integer> newCluster = new ArrayList<>();
-                                            newCluster.add(dest);
-                                            addedNodes.add(dest);
-                                            clusterList.add(newCluster);
-                                            //System.out.println(":)");
-                                            count += 1;
-                                            currentCluster = newCluster;
-                                        } else
-                                        {
-                                            for (Integer node : nodeSet)
+                                            if (!addedNodes.contains(node))
                                             {
-                                                if (!addedNodes.contains(node))
-                                                {
-                                                    currentCluster.add(node);
-                                                }
+                                                currentCluster.add(node);
                                             }
                                         }
                                     }
-                                    //}
-                                } else
+                                }
+                            } else
+                            {
+                                if (!currentCluster.contains(src) && !addedNodes.contains(src))
                                 {
-                                    if (!currentCluster.contains(src) && !addedNodes.contains(src))
-                                    {
-                                        currentCluster.add(src);
-                                        addedNodes.add(src);
-                                    }
-                                    if (!currentCluster.contains(dest) && !addedNodes
-                                            .contains(dest))
-                                    {
-                                        currentCluster.add(dest);
-                                        addedNodes.add(dest);
-                                    }
+                                    currentCluster.add(src);
+                                    addedNodes.add(src);
+                                }
+                                if (!currentCluster.contains(dest) && !addedNodes
+                                        .contains(dest))
+                                {
+                                    currentCluster.add(dest);
+                                    addedNodes.add(dest);
                                 }
                             }
                         }
@@ -134,7 +129,7 @@ public class Cluster
         return this.clusterCount;
     }
 
-    public ArrayList<ArrayList<Integer>> getResultSet()
+    public List<ArrayList<Integer>> getResultSet()
     {
         return this.resultSet;
     }

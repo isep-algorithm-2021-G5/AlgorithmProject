@@ -46,7 +46,7 @@ class ShortestPathTest
     void merge()
     {
         sp.merge(sp2);
-        assertEquals(7, sp.getShortestPathList().size());
+        assertEquals(6, sp.getShortestPathList().size());
     }
 
     @Test

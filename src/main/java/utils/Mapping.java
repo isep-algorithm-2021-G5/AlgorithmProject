@@ -15,8 +15,13 @@ import lombok.val;
  * @version : 1.0.0
  * @date : 2021/6/14
  */
-public class Mapping
+public final class Mapping
 {
+
+    private Mapping()
+    {
+        //Won't be called
+    }
 
     private static Map<Integer, Integer> getIdMap(Graph graph)
     {

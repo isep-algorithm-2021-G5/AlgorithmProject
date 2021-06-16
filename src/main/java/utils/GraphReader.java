@@ -15,8 +15,13 @@ import java.util.Map;
  * @version : 1.0.0
  * @date : 2021/6/13
  */
-public class GraphReader
+public final class GraphReader
 {
+
+    private GraphReader()
+    {
+        //Won't be called
+    }
 
     public static Map<Integer, Node> readNodes(String path)
     {

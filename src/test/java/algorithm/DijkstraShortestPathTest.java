@@ -43,13 +43,14 @@ class DijkstraShortestPathTest
     @Test
     void getShortestPathTo()
     {
-        assertEquals("0 -> 1", dijkstra.getShortestPathString(1));
-        assertEquals("0 -> 1 -> 6 -> 2", dijkstra.getShortestPathString(2));
-        assertEquals("0 -> 1 -> 6 -> 7 -> 3", dijkstra.getShortestPathString(3));
-        assertEquals("0 -> 4", dijkstra.getShortestPathString(4));
-        assertEquals("0 -> 1 -> 5", dijkstra.getShortestPathString(5));
-        assertEquals("0 -> 1 -> 6", dijkstra.getShortestPathString(6));
-        assertEquals("0 -> 1 -> 6 -> 7", dijkstra.getShortestPathString(7));
+        assertEquals("[0, 1]", dijkstra.getShortestPath(1).getShortestPathList().toString());
+        assertEquals("[0, 1, 6, 2]", dijkstra.getShortestPath(2).getShortestPathList().toString());
+        assertEquals("[0, 1, 6, 7, 3]",
+                     dijkstra.getShortestPath(3).getShortestPathList().toString());
+        assertEquals("[0, 4]", dijkstra.getShortestPath(4).getShortestPathList().toString());
+        assertEquals("[0, 1, 5]", dijkstra.getShortestPath(5).getShortestPathList().toString());
+        assertEquals("[0, 1, 6]", dijkstra.getShortestPath(6).getShortestPathList().toString());
+        assertEquals("[0, 1, 6, 7]", dijkstra.getShortestPath(7).getShortestPathList().toString());
     }
 
     @Test

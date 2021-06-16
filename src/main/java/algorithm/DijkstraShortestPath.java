@@ -16,7 +16,6 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
-import java.util.Stack;
 import lombok.Getter;
 
 /**
@@ -52,12 +51,12 @@ public class DijkstraShortestPath
         Arrays.fill(distance, Double.MAX_VALUE);
         distance[start] = 0;
 
-        if (banNodes != null && banNodes.size() != 0)
+        if (banNodes != null && !banNodes.isEmpty())
         {
             marked.addAll(banNodes);
         }
 
-        if (banNodes != null && banNodes.size() != 0)
+        if (banNodes != null && !banNodes.isEmpty())
         {
             for (Edge e : banEdges)
             {
@@ -74,7 +73,7 @@ public class DijkstraShortestPath
 
         while (marked.size() != nodeSize)
         {
-            if (pq.size() == 0)
+            if (pq.isEmpty())
             {
                 break;
             }
@@ -119,31 +118,6 @@ public class DijkstraShortestPath
     public double getDistanceTo(int v)
     {
         return distance[v];
-    }
-
-    public String getShortestPathString(int v)
-    {
-        if (!hasPathTo(v))
-        {
-            return null;
-        }
-        int pre = previous[v];
-        Stack<Integer> stack = new Stack<>();
-        while (pre != this.start)
-        {
-            stack.push(pre);
-            pre = previous[pre];
-        }
-        StringBuilder str = new StringBuilder(this.start + " -> ");
-        int size = stack.size();
-        for (int i = 0; i < size; i++)
-        {
-            str.append(stack.pop()).append(" -> ");
-        }
-        str.append(v);
-
-        return str.toString();
-
     }
 
     public ShortestPath getShortestPath(int v)

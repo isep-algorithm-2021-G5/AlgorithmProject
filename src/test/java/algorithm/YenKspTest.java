@@ -42,12 +42,4 @@ class YenKspTest
         assertEquals("[0, 1, 5, 6]", spsList.get(1).getShortestPathList().toString());
         assertEquals("[0, 4, 7, 6]", spsList.get(2).getShortestPathList().toString());
     }
-
-    @Test
-    void getBusShortestPaths()
-    {
-        yenKsp = new YenKsp(mappedGraph, 0, 3300, 3);
-        Set<ShortestPath> sps = yenKsp.getShortestPaths();
-        assertEquals(3, sps.size());
-    }
 }

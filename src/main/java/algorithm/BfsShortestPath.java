@@ -39,7 +39,7 @@ public class BfsShortestPath
         distance[start] = 0;
         marked[start] = true;
 
-        while (queue.size() != 0)
+        while (!queue.isEmpty())
         {
             // Init adjList
             Collection<Edge> adjList;
@@ -90,7 +90,7 @@ public class BfsShortestPath
 
         if (!hasPathTo(v))
         {
-            return null;
+            return new LinkedList<>();
         }
         while (!done)
         {

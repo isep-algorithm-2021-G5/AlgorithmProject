@@ -69,7 +69,7 @@ public class EdgeBtw
         {
             List<Integer> shortestPath = sp.getShortestPathList();
 
-            if (shortestPath.size() > 0)
+            if (!shortestPath.isEmpty())
             {
                 for (int i = 0; i < shortestPath.size() - 1; i++)
                 {
@@ -82,7 +82,7 @@ public class EdgeBtw
         return edgeBtw;
     }
 
-    public ArrayList<Edge> getAllEdges()
+    public List<Edge> getAllEdges()
     {
         return this.allEdges;
     }
