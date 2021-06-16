@@ -34,7 +34,7 @@ public class Main
         System.out.println("[1] Bus stop graph of Phoenix");
         System.out.println("[2] Dijkstra's shortest path");
         System.out.println("[3] K-shortest paths(It will take one to two minutes)");
-        System.out.println("[4] BFS shortest path");
+        System.out.println("[4] Difference between BFS(Unweighted) and Dijkstra(Weighted) [Magenta: BFS, Orange: Dijkstra]");
         Scanner in = new Scanner(System.in);
         Graph graph = new Graph(Path.PHOENIX_STOPS, Path.PHOENIX_GRAPH, 0);
         Graph weightedGraph = new Graph(Path.PHOENIX_STOPS, Path.PHOENIX_WEIGHTED_GRAPH, 1);
@@ -64,17 +64,14 @@ public class Main
                 Visualization.show(mappedGraph, sps, "Yen", true);
                 break;
             case 4:
-                BfsShortestPath bfs = new BfsShortestPath(mappedGraph2,START);
-                ShortestPath sp = new ShortestPath(START,END,bfs.getShortestPath(END));
-                System.out.println("BFS Shortest Path: "+START+" -> "+END);
-                System.out.println("The stops number passed is: " + sp.getShortestPathList().size());
-                for(int i = 0; i < sp.getShortestPathList().size(); i++){
-                    System.out.print(sp.getShortestPathList().get(i) + "->");
-                    if(i % 20 == 0 && i != 0) System.out.println();
-                }
+                BfsShortestPath bfs = new BfsShortestPath(mappedGraph2,10);
+                ShortestPath sp = new ShortestPath(10,2000,bfs.getShortestPath(2000));
+                DijkstraShortestPath dij2 = new DijkstraShortestPath(mappedGraph, 10, null, null);
+                ShortestPath sp2 = dij2.getShortestPath(2000);
                 Set<ShortestPath> spSet = new TreeSet<>();
                 spSet.add(sp);
-                Visualization.show(mappedGraph2, spSet, "BFS", true);
+                spSet.add(sp2);
+                Visualization.show(mappedGraph2, spSet, "BFS VS Dijkstra", true);
                 break;
             default:
                 System.out.println("Wrong input");
