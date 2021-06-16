@@ -17,9 +17,9 @@ public class Main
 
 
     private static final int THRESHOLD = 6959;
-    private static final int START = 550;
-    private static final int END = 1550;
-    private static final int K = 3;
+    private static final int START = 800;
+    private static final int END = 4100;
+    private static final int K = 5;
 
     public static void main(String[] args)
     {

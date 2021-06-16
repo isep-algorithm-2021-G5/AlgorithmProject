@@ -57,7 +57,7 @@ public class ShortestPath implements Comparable<ShortestPath>, Cloneable
             path.add(shortestPath.pop());
         }
         this.shortestPath = path;
-        this.weight = distance[index - 1];
+        this.weight = distance[dest];
     }
 
     public void merge(ShortestPath sp)

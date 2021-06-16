@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import config.Path;
 import graph.Graph;
 import graph.ShortestPath;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +36,11 @@ class YenKspTest
     {
         yenKsp = new YenKsp(graph, 0, 6, 3);
         Set<ShortestPath> sps = yenKsp.getShortestPaths();
-        assertEquals(3,sps.size());
+        List<ShortestPath> spsList = new ArrayList<>(sps);
+        assertEquals(3, sps.size());
+        assertEquals("[0, 1, 6]", spsList.get(0).getShortestPathList().toString());
+        assertEquals("[0, 1, 5, 6]", spsList.get(1).getShortestPathList().toString());
+        assertEquals("[0, 4, 7, 6]", spsList.get(2).getShortestPathList().toString());
     }
 
     @Test
@@ -42,6 +48,6 @@ class YenKspTest
     {
         yenKsp = new YenKsp(mappedGraph, 0, 3300, 3);
         Set<ShortestPath> sps = yenKsp.getShortestPaths();
-        assertEquals(3,sps.size());
+        assertEquals(3, sps.size());
     }
 }
