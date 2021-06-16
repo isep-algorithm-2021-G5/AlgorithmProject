@@ -14,9 +14,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class Cluster
 {
-    private int clusterCount;
-    private final ArrayList<ArrayList<Integer>> resultSet = new ArrayList<>();
 
+    private final ArrayList<ArrayList<Integer>> resultSet = new ArrayList<>();
+    private int clusterCount;
     private Graph graph;
 
     public Cluster(Graph graph)
@@ -121,7 +121,7 @@ public class Cluster
             for (ArrayList<Integer> cluster : clusterList)
             {
                 int clusterIndex = clusterList.indexOf(cluster) + 1;
-                System.out.println(clusterIndex +":"+ cluster);
+                System.out.println(clusterIndex + ":" + cluster);
                 this.clusterCount = clusterIndex;
                 this.resultSet.add(cluster);
             }

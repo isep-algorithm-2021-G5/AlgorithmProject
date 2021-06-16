@@ -36,7 +36,7 @@ public class LazyChenKsp
         this.shortestPaths = new ArrayList<>();
         for (Graph g : subGraphs)
         {
-            DijkstraShortestPath dij = new DijkstraShortestPath(g, start,null,null);
+            DijkstraShortestPath dij = new DijkstraShortestPath(g, start, null, null);
             ShortestPath sp = dij.getShortestPath(end);
             sp.setWeight(sp.getWeight() + Double.valueOf(sigma) / getPathCapacity(sp));
             shortestPaths.add(sp);

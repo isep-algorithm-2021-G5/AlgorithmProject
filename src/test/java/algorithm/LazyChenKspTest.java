@@ -22,8 +22,8 @@ class LazyChenKspTest
     @BeforeEach
     void setUp()
     {
-        lazyChenKsp = new LazyChenKsp(new Graph(Path.LAZY_CHEN_NODES, Path.LAZY_CHEN_GRAPH, 2), 1, 6,
-                                      100);
+        lazyChenKsp = new LazyChenKsp(new Graph(Path.LAZY_CHEN_NODES, Path.LAZY_CHEN_GRAPH, 2),
+                                      1, 6, 100);
 
     }
 

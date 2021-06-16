@@ -1,11 +1,11 @@
 package algorithm;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import config.Path;
 import graph.Graph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author : Xianqi LIU
@@ -13,7 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @date : 2021/6/14
  */
 
-class ClusterBtwTest {
+class ClusterBtwTest
+{
 
     EdgeBtw edgeBtw;
     Cluster cluster;
@@ -28,16 +29,18 @@ class ClusterBtwTest {
     }
 
     @Test
-    void getMaxBtwEdge(){
-        assertEquals("4",edgeBtw.getMaxBtwEdge().getFrom().toString());
-        assertEquals("5",edgeBtw.getMaxBtwEdge().getTo().toString());
+    void getMaxBtwEdge()
+    {
+        assertEquals("4", edgeBtw.getMaxBtwEdge().getFrom().toString());
+        assertEquals("5", edgeBtw.getMaxBtwEdge().getTo().toString());
     }
 
     @Test
-    void getClusters(){
+    void getClusters()
+    {
         assertEquals(2, cluster.getClusterCount());
         assertEquals("[[1, 2, 3, 4], [5, 6, 7, 8]]",
-                cluster.getResultSet().toString());
+                     cluster.getResultSet().toString());
     }
 
 }

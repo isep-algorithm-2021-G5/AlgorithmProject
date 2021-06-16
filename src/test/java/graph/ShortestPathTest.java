@@ -21,7 +21,7 @@ class ShortestPathTest
     DijkstraShortestPath dijkstra;
     Graph graph = new Graph(Path.DIJKSTRA_NODES, Path.DIJKSTRA_GRAPH, 1);
     ShortestPath sp, sp2;
-    ShortestPath s1, s2,s3;
+    ShortestPath s1, s2, s3;
 
     @BeforeEach
     void setUp()
@@ -30,9 +30,9 @@ class ShortestPathTest
         sp = dijkstra.getShortestPath(3);
         sp2 = dijkstra.getShortestPath(4);
 
-        s1 = new ShortestPath(1,2,new ArrayDeque<>(Lists.newArrayList(1,2,3,4,5)),20);
-        s2 = new ShortestPath(1,3,new ArrayDeque<>(Lists.newArrayList(1,2,3,4,5)),10);
-        s3 = new ShortestPath(1,2,new ArrayDeque<>(Lists.newArrayList(1,4,5)),20);
+        s1 = new ShortestPath(1, 2, new ArrayDeque<>(Lists.newArrayList(1, 2, 3, 4, 5)), 20);
+        s2 = new ShortestPath(1, 3, new ArrayDeque<>(Lists.newArrayList(1, 2, 3, 4, 5)), 10);
+        s3 = new ShortestPath(1, 2, new ArrayDeque<>(Lists.newArrayList(1, 4, 5)), 20);
     }
 
     @Test
@@ -52,16 +52,16 @@ class ShortestPathTest
     @Test
     void testHashCode()
     {
-        assertEquals(s1.hashCode(),s2.hashCode());
-        assertNotEquals(s1.hashCode(),s3.hashCode());
+        assertEquals(s1.hashCode(), s2.hashCode());
+        assertNotEquals(s1.hashCode(), s3.hashCode());
 
     }
 
     @Test
     void testEquals()
     {
-        assertEquals(s1,s2);
-        assertNotEquals(s1,s3);
+        assertEquals(s1, s2);
+        assertNotEquals(s1, s3);
 
     }
 

@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import config.Path;
 import graph.Graph;
-import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -60,7 +59,7 @@ class DijkstraShortestPathTest
         double[] dijDistance = dijkstra.getDistance();
         for (int i = 0; i < distance.length; i++)
         {
-            assertEquals(distance[i],dijDistance[i]);
+            assertEquals(distance[i], dijDistance[i]);
         }
     }
 }

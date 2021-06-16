@@ -1,4 +1,3 @@
-import algorithm.BfsShortestPath;
 import algorithm.YenKsp;
 import config.Path;
 import graph.Graph;
@@ -32,7 +31,6 @@ public class Main
         Graph mappedGraph = Mapping.reMapGraph(weightedGraph);
 //        Graph graphConnected = Connectivity.removeIsolated(graph, THRESHOLD);
 //        graphConnected = Mapping.reMapGraph(graphConnected);
-
 
 //        YenKsp yenKsp = new YenKsp(mappedGraph, 800, 4100, 3);
         YenKsp yenKsp = new YenKsp(mappedGraph, START, END, K);

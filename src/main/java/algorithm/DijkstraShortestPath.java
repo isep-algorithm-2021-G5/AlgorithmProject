@@ -66,7 +66,7 @@ public class DijkstraShortestPath
                 adjList.removeAll(e.getFrom());
                 e.setWeight(Integer.MAX_VALUE);
                 set.add(e);
-                adjList.putAll(e.getFrom(),set);
+                adjList.putAll(e.getFrom(), set);
             }
         }
 

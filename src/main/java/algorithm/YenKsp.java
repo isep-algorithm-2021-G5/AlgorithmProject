@@ -63,7 +63,7 @@ public class YenKsp
             for (ShortestPath s : shortestPaths)
             {
                 tmp = s.getShortestPathList().toArray(new Integer[0]);
-                for (int j = 0; j < tmp.length-1; j++)
+                for (int j = 0; j < tmp.length - 1; j++)
                 {
                     if (tmp[j].equals(now))
                     {

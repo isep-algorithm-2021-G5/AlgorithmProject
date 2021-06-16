@@ -1,8 +1,6 @@
 package graph;
 
 import com.google.common.base.Objects;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,11 +16,9 @@ public class Edge
     private final Integer from;
 
     private final Integer to;
-
+    private final Integer capacity;
     @Setter
     private double weight;
-
-    private final Integer capacity;
 
     public Edge(Integer from, Integer to)
     {
