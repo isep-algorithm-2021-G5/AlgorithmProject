@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.JFrame;
@@ -40,107 +39,115 @@ public class Visualization
         JPanel jpanel = new JPanel()
         {
             @Override
-            public void paint(Graphics graphics)
+            public void paint(Graphics g)
             {
-                super.paint(graphics);
+                super.paint(g);
 
                 for (Node node : nodes.values())
                 {
-
-                    int lat = (int) ((-node.getLat() + LAT_DEVIATION) * ZOOM_LEVEL);
-                    int lon = (int) ((node.getLon() + LON_DEVIATION) * ZOOM_LEVEL);
-
-                    graphics.setColor(Color.BLUE);
-                    graphics.fillOval(lon, lat, 3, 3);
-
+                    drawNode(g, node, Color.BLUE, 3);
                 }
-                Node from, to;
-                int fromLat, fromLon, toLat, toLon;
                 for (Edge edge : adjList.values())
                 {
-                    from = nodes.get(edge.getFrom());
-                    to = nodes.get(edge.getTo());
-                    fromLat = (int) ((-from.getLat() + LAT_DEVIATION) * ZOOM_LEVEL);
-                    fromLon = (int) ((from.getLon() + LON_DEVIATION) * ZOOM_LEVEL);
-                    toLat = (int) ((-to.getLat() + LAT_DEVIATION) * ZOOM_LEVEL);
-                    toLon = (int) ((to.getLon() + LON_DEVIATION) * ZOOM_LEVEL);
-                    drawArrow(graphics, fromLon, fromLat, toLon, toLat, ARR_SIZE, Color.GRAY);
+                    drawArrow(g, nodes.get(edge.getFrom()), nodes.get(edge.getTo()),
+                              Color.GRAY);
                 }
                 if (sps != null)
                 {
-                    drawShortestPath(graphics,sps);
-
-                }
-
-
-            }
-
-            void drawShortestPath(Graphics g, Set<ShortestPath> sps)
-            {
-                int c = 1;
-                Color color;
-                for (ShortestPath sp : sps)
-                {
-                    Integer[] path = sp.getShortestPathList().toArray(new Integer[0]);
-                    for (int i = 0; i < path.length - 1; i++)
-                    {
-                        Node f = nodes.get(path[i]);
-                        Node t = nodes.get(path[i + 1]);
-
-                        int fLat = (int) ((-f.getLat() + LAT_DEVIATION) * ZOOM_LEVEL);
-                        int fLon = (int) ((f.getLon() + LON_DEVIATION) * ZOOM_LEVEL);
-                        int tLat = (int) ((-t.getLat() + LAT_DEVIATION) * ZOOM_LEVEL);
-                        int tLon = (int) ((t.getLon() + LON_DEVIATION) * ZOOM_LEVEL);
-                        g.setColor(Color.CYAN);
-                        if (i == 0)
-                        {
-                            g.setColor(Color.GREEN);
-                            g.fillOval(fLon, fLat, 20, 20);
-                        } else
-                        {
-//                            g.fillOval(fLon, fLat, 5, 5);
-                        }
-                        switch (c%3){
-                            case 1:
-                                color = Color.MAGENTA;
-                                break;
-                            case 2:
-                                color = Color.ORANGE;
-                                break;
-                            case 0:
-                                color = Color.CYAN;
-                                break;
-                            default:
-                                color = Color.RED;
-                        }
-                        drawArrow(g, fLon, fLat, tLon, tLat, 5, color);
-                        if (i == path.length - 2)
-                        {
-                            g.setColor(Color.RED);
-                            g.fillOval(tLon, fLat, 20, 20);
-                        }
-                    }
-                    c++;
+                    drawShortestPath(g, sps, nodes);
                 }
             }
 
-            void drawArrow(Graphics g1, int x1, int y1, int x2, int y2, int arrasSize, Color color)
-            {
-                Graphics2D g = (Graphics2D) g1.create();
-                double dx = x2 - x1, dy = y2 - y1;
-                double angle = Math.atan2(dy, dx);
-                int len = (int) Math.sqrt(dx * dx + dy * dy);
-                AffineTransform at = AffineTransform.getTranslateInstance(x1, y1);
-                at.concatenate(AffineTransform.getRotateInstance(angle));
-                g.transform(at);
-                g.setColor(color);
-                g.drawLine(0, 0, len, 0);
-                g.fillPolygon(new int[]{len, len - arrasSize, len - arrasSize, len},
-                              new int[]{0, -arrasSize, arrasSize, 0}, 4);
-            }
         };
         jFrame.add(jpanel);
         jFrame.setSize(X_SIZE, Y_SIZE);
         jFrame.setVisible(true);
+    }
+
+    private static void drawShortestPath(Graphics g, Set<ShortestPath> sps,
+                                         Map<Integer, Node> nodes)
+    {
+        int c = 1;
+        Color color;
+        for (ShortestPath sp : sps)
+        {
+            Integer[] path = sp.getShortestPathList().toArray(new Integer[0]);
+            for (int i = 0; i < path.length - 1; i++)
+            {
+                Node from = nodes.get(path[i]);
+                Node to = nodes.get(path[i + 1]);
+
+                if (i == 0)
+                {
+                    drawNode(g, from, Color.GREEN, 20);
+                }
+                switch (c % 3)
+                {
+                    case 1:
+                        color = Color.MAGENTA;
+                        break;
+                    case 2:
+                        color = Color.ORANGE;
+                        break;
+                    case 0:
+                        color = Color.CYAN;
+                        break;
+                    default:
+                        color = Color.RED;
+                }
+                drawArrow(g, from, to, color);
+                if (i == path.length - 2)
+                {
+                    drawNode(g, to, Color.RED, 20);
+                }
+            }
+            c++;
+        }
+    }
+
+    private static void drawNode(Graphics g, Node node, Color color, int diameter)
+    {
+        int lat = normalizeLat(node);
+        int lon = normalizeLon(node);
+        g.setColor(color);
+        g.fillOval(lon, lat, diameter, diameter);
+    }
+
+    static void drawArrow(Graphics g, Node from, Node to, Color color)
+    {
+        int fromLat = normalizeLat(from);
+        int fromLon = normalizeLon(from);
+        int toLat = normalizeLat(to);
+        int toLon = normalizeLon(to);
+        drawArrow(g, fromLon, fromLat, toLon, toLat, color);
+
+    }
+
+    private static void drawArrow(Graphics g, int x1, int y1, int x2, int y2,
+                                  Color color)
+    {
+
+        Graphics2D g2D = (Graphics2D) g.create();
+        double dx = x2 - x1, dy = y2 - y1;
+        double angle = Math.atan2(dy, dx);
+        int len = (int) Math.sqrt(dx * dx + dy * dy);
+        AffineTransform at = AffineTransform.getTranslateInstance(x1, y1);
+        at.concatenate(AffineTransform.getRotateInstance(angle));
+        g2D.transform(at);
+        g2D.setColor(color);
+        g2D.drawLine(0, 0, len, 0);
+        g2D.fillPolygon(new int[]{len, len - ARR_SIZE, len - ARR_SIZE, len},
+                        new int[]{0, -ARR_SIZE, ARR_SIZE, 0}, 4);
+    }
+
+
+    private static int normalizeLat(Node node)
+    {
+        return (int) ((-node.getLat() + LAT_DEVIATION) * ZOOM_LEVEL);
+    }
+
+    private static int normalizeLon(Node node)
+    {
+        return (int) ((node.getLon() + LON_DEVIATION) * ZOOM_LEVEL);
     }
 }
