@@ -44,7 +44,7 @@ public class EdgeBtw
                 {
                     BfsShortestPath bfsShortestPath = new BfsShortestPath(graph, src);
                     ShortestPath shortestPath = new ShortestPath(src, dest, bfsShortestPath
-                            .printShortestPath(dest));
+                            .getShortestPath(dest));
                     spList.addLast(shortestPath);
                 }
             }

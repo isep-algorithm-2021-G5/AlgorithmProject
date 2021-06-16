@@ -39,13 +39,13 @@ class BfsShortestPathTest {
     @Test
     void getShortestPathTo()
     {
-        assertEquals("[0, 1]",bfs.printShortestPath(1).toString());
-        assertEquals("[0, 1, 6, 2]",bfs.printShortestPath(2).toString());
-        assertEquals("[0, 4, 7, 3]",bfs.printShortestPath(3).toString());
-        assertEquals("[0, 4]",bfs.printShortestPath(4).toString());
-        assertEquals("[0, 1, 5]",bfs.printShortestPath(5).toString());
-        assertEquals("[0, 1, 6]",bfs.printShortestPath(6).toString());
-        assertEquals("[0, 4, 7]",bfs.printShortestPath(7).toString());
+        assertEquals("[0, 1]",bfs.getShortestPath(1).toString());
+        assertEquals("[0, 1, 6, 2]",bfs.getShortestPath(2).toString());
+        assertEquals("[0, 4, 7, 3]",bfs.getShortestPath(3).toString());
+        assertEquals("[0, 4]",bfs.getShortestPath(4).toString());
+        assertEquals("[0, 1, 5]",bfs.getShortestPath(5).toString());
+        assertEquals("[0, 1, 6]",bfs.getShortestPath(6).toString());
+        assertEquals("[0, 4, 7]",bfs.getShortestPath(7).toString());
     }
 
 }

@@ -83,7 +83,7 @@ public class BfsShortestPath
     /**
      * print the shortest path from s to v
      */
-    public Deque<Integer> printShortestPath(int v)
+    public Deque<Integer> getShortestPath(int v)
     {
         Deque<Integer> path = new LinkedList<>();
         boolean done = false;
