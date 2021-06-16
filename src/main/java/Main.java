@@ -17,6 +17,9 @@ public class Main
 
 
     private static final int THRESHOLD = 6959;
+    private static final int START = 550;
+    private static final int END = 1550;
+    private static final int K = 3;
 
     public static void main(String[] args)
     {
@@ -31,7 +34,8 @@ public class Main
 //        graphConnected = Mapping.reMapGraph(graphConnected);
 
 
-        YenKsp yenKsp = new YenKsp(mappedGraph, 800, 4100, 2);
+//        YenKsp yenKsp = new YenKsp(mappedGraph, 800, 4100, 3);
+        YenKsp yenKsp = new YenKsp(mappedGraph, START, END, K);
         Set<ShortestPath> sps = yenKsp.getShortestPaths();
         for (ShortestPath sp : sps)
         {

@@ -29,7 +29,7 @@ public class Connectivity
      */
     private static Map<Integer, Integer> calculateAll(Graph graph)
     {
-        Map<Integer, Integer> count = new HashMap<>(7772);
+        Map<Integer, Integer> count = new HashMap<>(graph.getNodes().size());
         val nodes = graph.getNodes();
 
         for (Integer from : nodes.keySet())
@@ -37,7 +37,7 @@ public class Connectivity
             BfsShortestPath bfs = new BfsShortestPath(graph, from);
             for (Integer to : nodes.keySet())
             {
-                if (!to.equals(from) && bfs.hasPathTo(to))
+                if (bfs.hasPathTo(to))
                 {
                     Integer c = count.get(from);
                     if (c != null)
