@@ -50,14 +50,14 @@ public class ShortestPath implements Comparable<ShortestPath>, Cloneable
     public void split(Integer index)
     {
         Integer[] pathV = this.shortestPath.toArray(new Integer[0]);
-        this.dest = pathV[index-1];
+        this.dest = pathV[index - 1];
         Deque<Integer> path = new ArrayDeque<>();
         for (int i = 0; i < index; i++)
         {
             path.add(shortestPath.pop());
         }
         this.shortestPath = path;
-        this.weight = distance[index-1];
+        this.weight = distance[index - 1];
     }
 
     public void merge(ShortestPath sp)
@@ -77,7 +77,7 @@ public class ShortestPath implements Comparable<ShortestPath>, Cloneable
             return Double.compare(this.weight, o.weight);
         } else
         {
-            return Integer.compare(this.shortestPath.size(), o.shortestPath.size());
+            return -Integer.compare(this.shortestPath.size(), o.shortestPath.size());
         }
 
     }
@@ -96,7 +96,8 @@ public class ShortestPath implements Comparable<ShortestPath>, Cloneable
 
         ShortestPath path1 = (ShortestPath) o;
         return this.getShortestPathList() != null ?
-               this.getShortestPathList().toString().equals(path1.getShortestPathList().toString()) :
+               this.getShortestPathList().toString()
+                       .equals(path1.getShortestPathList().toString()) :
                path1.shortestPath == null;
     }
 
@@ -117,6 +118,6 @@ public class ShortestPath implements Comparable<ShortestPath>, Cloneable
             e.printStackTrace();
         }
         Deque<Integer> d = new ArrayDeque<Integer>(this.shortestPath);
-        return new ShortestPath(this.src,this.dest,d,this.weight,this.distance);
+        return new ShortestPath(this.src, this.dest, d, this.weight, this.distance);
     }
 }

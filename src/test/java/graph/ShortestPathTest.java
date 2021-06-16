@@ -64,4 +64,5 @@ class ShortestPathTest
         assertNotEquals(s1,s3);
 
     }
+
 }

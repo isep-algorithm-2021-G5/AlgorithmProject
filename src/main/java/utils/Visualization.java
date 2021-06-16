@@ -119,8 +119,8 @@ public class Visualization
                             g.setColor(Color.RED);
                             g.fillOval(tLon, fLat, 20, 20);
                         }
-                        c++;
                     }
+                    c++;
                 }
             }
 

@@ -1,8 +1,9 @@
-import algorithm.DijkstraShortestPath;
+import algorithm.BfsShortestPath;
 import algorithm.YenKsp;
 import config.Path;
 import graph.Graph;
-import utils.Connectivity;
+import graph.ShortestPath;
+import java.util.Set;
 import utils.Mapping;
 import utils.Visualization;
 
@@ -23,19 +24,24 @@ public class Main
         Graph graph = new Graph(Path.PHOENIX_STOPS, Path.PHOENIX_GRAPH, 0);
         Graph weightedGraph = new Graph(Path.PHOENIX_STOPS, Path.PHOENIX_WEIGHTED_GRAPH, 1);
 
-        Visualization.show(Mapping.reMapGraph(graph),null);
+        Visualization.show(Mapping.reMapGraph(graph), null);
 
-        Graph  mappedGraph = Mapping.reMapGraph(weightedGraph);
+        Graph mappedGraph = Mapping.reMapGraph(weightedGraph);
 //        Graph graphConnected = Connectivity.removeIsolated(graph, THRESHOLD);
 //        graphConnected = Mapping.reMapGraph(graphConnected);
 
 
-        YenKsp yenKsp = new YenKsp(mappedGraph,0,7700,3);
-        Visualization.show(mappedGraph,yenKsp.getShortestPaths());
-
+        YenKsp yenKsp = new YenKsp(mappedGraph, 800, 4100, 2);
+        Set<ShortestPath> sps = yenKsp.getShortestPaths();
+        for (ShortestPath sp : sps)
+        {
+            System.out.println(
+                    "Size: " + sp.getShortestPathList().size() + "Weight: " + sp.getWeight());
+            System.out.println(sp.getShortestPathList().toString());
+        }
+        Visualization.show(mappedGraph, sps);
 
 //        Visualization.show(graphConnected,null);
 
-        System.out.println(1);
     }
 }
