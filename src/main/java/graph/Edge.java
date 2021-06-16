@@ -16,7 +16,14 @@ public class Edge
     private final Integer from;
 
     private final Integer to;
+    /**
+     * For no capacity graph, capacity = null
+     */
     private final Integer capacity;
+
+    /**
+     * For unweighted graphs, weight = 1
+     */
     @Setter
     private double weight;
 

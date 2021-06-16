@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 /**
+ * Display graph
  * @author : Xuan MIAO
  * @version : 1.0.0
  * @date : 2021/6/14
@@ -35,12 +36,21 @@ public final class Visualization
         //Won't be called
     }
 
-    public static void show(Graph graph, Set<ShortestPath> sps)
+    public static void show(Graph graph, Set<ShortestPath> sps, String title, Boolean normalize)
     {
         Map<Integer, Node> nodes = graph.getNodes();
         Multimap<Integer, Edge> adjList = graph.getAdjList();
         JFrame jFrame = new JFrame();
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        jFrame.setTitle(title);
+        int diameter;
+        if (normalize)
+        {
+            diameter = 3;
+        } else
+        {
+            diameter = 20;
+        }
         JPanel jpanel = new JPanel()
         {
             @Override
@@ -50,16 +60,16 @@ public final class Visualization
 
                 for (Node node : nodes.values())
                 {
-                    drawNode(g, node, Color.BLUE, 3);
+                    drawNode(g, node, Color.BLUE, diameter, normalize);
                 }
                 for (Edge edge : adjList.values())
                 {
                     drawArrow(g, nodes.get(edge.getFrom()), nodes.get(edge.getTo()),
-                              Color.GRAY);
+                              Color.GRAY, normalize);
                 }
                 if (sps != null)
                 {
-                    drawShortestPath(g, sps, nodes);
+                    drawShortestPath(g, sps, nodes, normalize);
                 }
             }
 
@@ -70,7 +80,7 @@ public final class Visualization
     }
 
     private static void drawShortestPath(Graphics g, Set<ShortestPath> sps,
-                                         Map<Integer, Node> nodes)
+                                         Map<Integer, Node> nodes, Boolean normalize)
     {
         int c = 1;
         Color color;
@@ -84,7 +94,7 @@ public final class Visualization
 
                 if (i == 0)
                 {
-                    drawNode(g, from, Color.GREEN, 20);
+                    drawNode(g, from, Color.GREEN, 20, normalize);
                 }
                 switch (c % 3)
                 {
@@ -100,30 +110,31 @@ public final class Visualization
                     default:
                         color = Color.RED;
                 }
-                drawArrow(g, from, to, color);
+                drawArrow(g, from, to, color, normalize);
                 if (i == path.length - 2)
                 {
-                    drawNode(g, to, Color.RED, 20);
+                    drawNode(g, to, Color.RED, 20, normalize);
                 }
             }
             c++;
         }
     }
 
-    private static void drawNode(Graphics g, Node node, Color color, int diameter)
+    private static void drawNode(Graphics g, Node node, Color color, int diameter,
+                                 Boolean normalize)
     {
-        int lat = normalizeLat(node);
-        int lon = normalizeLon(node);
+        int lat = normalizeLat(node, normalize);
+        int lon = normalizeLon(node, normalize);
         g.setColor(color);
-        g.fillOval(lon, lat, diameter, diameter);
+        g.fillOval(lon - diameter / 2, lat - diameter / 2, diameter, diameter);
     }
 
-    static void drawArrow(Graphics g, Node from, Node to, Color color)
+    static void drawArrow(Graphics g, Node from, Node to, Color color, Boolean normalize)
     {
-        int fromLat = normalizeLat(from);
-        int fromLon = normalizeLon(from);
-        int toLat = normalizeLat(to);
-        int toLon = normalizeLon(to);
+        int fromLat = normalizeLat(from, normalize);
+        int fromLon = normalizeLon(from, normalize);
+        int toLat = normalizeLat(to, normalize);
+        int toLon = normalizeLon(to, normalize);
         drawArrow(g, fromLon, fromLat, toLon, toLat, color);
 
     }
@@ -147,13 +158,25 @@ public final class Visualization
     }
 
 
-    private static int normalizeLat(Node node)
+    private static int normalizeLat(Node node, Boolean normalize)
     {
-        return (int) ((-node.getLat() + LAT_DEVIATION) * ZOOM_LEVEL);
+        if (normalize)
+        {
+            return (int) ((-node.getLat() + LAT_DEVIATION) * ZOOM_LEVEL);
+        } else
+        {
+            return (int) node.getLat();
+        }
     }
 
-    private static int normalizeLon(Node node)
+    private static int normalizeLon(Node node, Boolean normalize)
     {
-        return (int) ((node.getLon() + LON_DEVIATION) * ZOOM_LEVEL);
+        if (normalize)
+        {
+            return (int) ((node.getLon() + LON_DEVIATION) * ZOOM_LEVEL);
+        } else
+        {
+            return (int) node.getLon();
+        }
     }
 }

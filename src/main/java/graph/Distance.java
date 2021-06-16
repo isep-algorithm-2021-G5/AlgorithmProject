@@ -1,9 +1,13 @@
 package graph;
 
+import algorithm.DijkstraShortestPath;
 import lombok.Getter;
 import lombok.NonNull;
 
 /**
+ * Used to store the distance from the starting point of each point generated in {@link
+ * DijkstraShortestPath}
+ *
  * @author : Xuan MIAO
  * @version : 1.0.0
  * @date : 2021/6/13

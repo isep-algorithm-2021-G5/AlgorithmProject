@@ -21,6 +21,9 @@ public class ShortestPath implements Comparable<ShortestPath>
 
     private int src;
     private int dest;
+    /**
+     * Shortest path
+     */
     private Deque<Integer> sp;
     private double weight;
     private double[] distance;
@@ -46,6 +49,10 @@ public class ShortestPath implements Comparable<ShortestPath>
         return new ArrayList<>(this.sp);
     }
 
+    /**
+     * Cut the shortest path from the index and keep only the first half
+     * @param index index
+     */
     public void split(Integer index)
     {
         Integer[] pathV = this.sp.toArray(new Integer[0]);
@@ -59,6 +66,10 @@ public class ShortestPath implements Comparable<ShortestPath>
         this.weight = distance[dest];
     }
 
+    /**
+     * Connects a shortest path to the back of this one
+     * @param sp shortest path
+     */
     public void merge(ShortestPath sp)
     {
         this.sp.removeLast();

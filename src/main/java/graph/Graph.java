@@ -16,6 +16,9 @@ public class Graph
 
     Map<Integer, Node> nodes;
 
+    /**
+     * Use {@link Multimap} to store adjList
+     */
     Multimap<Integer, Edge> adjList;
 
 

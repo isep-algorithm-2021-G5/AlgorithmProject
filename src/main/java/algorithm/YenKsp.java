@@ -51,6 +51,11 @@ public class YenKsp
 
     }
 
+    /**
+     * Calculate the second shortest path from the previous one
+     * @param sp previous shortest path
+     * @return second shortest path
+     */
     private ShortestPath getSecondShort(ShortestPath sp)
     {
 
@@ -72,10 +77,9 @@ public class YenKsp
                     }
                 }
             }
-            Set<Integer> banNodes = new HashSet<>();
             ShortestPath s = sp.copy();
             s.split(i);
-            banNodes.addAll(s.getShortestPathList());
+            Set<Integer> banNodes = new HashSet<>(s.getShortestPathList());
             DijkstraShortestPath dij = new DijkstraShortestPath(graph, now, banNodes,
                                                                 banEdges);
             s.merge(dij.getShortestPath(end));

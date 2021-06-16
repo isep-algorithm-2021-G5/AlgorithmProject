@@ -23,6 +23,11 @@ public final class Mapping
         //Won't be called
     }
 
+    /**
+     * Get the mapping of key = old id, value = new id
+     * @param graph graph
+     * @return id map
+     */
     private static Map<Integer, Integer> getIdMap(Graph graph)
     {
         int i = 0;
@@ -36,6 +41,11 @@ public final class Mapping
         return map;
     }
 
+    /**
+     * Update the nodes and adjList of the graph by using id mapping
+     * @param graph graph
+     * @return mapped graph
+     */
     public static Graph reMapGraph(Graph graph)
     {
         val idMap = getIdMap(graph);

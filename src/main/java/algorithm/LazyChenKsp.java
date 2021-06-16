@@ -61,6 +61,11 @@ public class LazyChenKsp
         return res;
     }
 
+    /**
+     * Calculate the minimum capacity on a shortest path
+     * @param sp shortest path
+     * @return minimum capacity
+     */
     private Integer getPathCapacity(ShortestPath sp)
     {
         Integer[] path = sp.getShortestPathList().toArray(new Integer[0]);
@@ -82,6 +87,10 @@ public class LazyChenKsp
 
     }
 
+    /**
+     * Remove edges based on volume and create subgraphs
+     * @return List of sub graphs
+     */
     private List<Graph> buildSubGraphs()
     {
         List<Graph> graphs = new ArrayList<>();

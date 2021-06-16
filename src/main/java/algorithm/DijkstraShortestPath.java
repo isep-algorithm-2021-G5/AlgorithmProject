@@ -30,16 +30,18 @@ public class DijkstraShortestPath
     @Getter
     private final double[] distance;
     private final int[] previous;
+    /**
+     * Optimize algorithm time complexity by using PriorityQueue
+     */
     private final PriorityQueue<Distance> pq;
     private final HashSet<Integer> marked;
     private final Integer start;
-    private final Map<Integer, Node> nodes;
     private final Multimap<Integer, Edge> adjList;
 
     public DijkstraShortestPath(Graph graph, Integer start, Set<Integer> banNodes,
                                 Set<Edge> banEdges)
     {
-        this.nodes = graph.getNodes();
+        Map<Integer, Node> nodes = graph.getNodes();
         this.adjList = ArrayListMultimap.create(graph.getAdjList());
         int nodeSize = nodes.size() + 1;
         this.distance = new double[nodeSize];
@@ -113,11 +115,6 @@ public class DijkstraShortestPath
     public boolean hasPathTo(int v)
     {
         return distance[v] != Double.MAX_VALUE;
-    }
-
-    public double getDistanceTo(int v)
-    {
-        return distance[v];
     }
 
     public ShortestPath getShortestPath(int v)

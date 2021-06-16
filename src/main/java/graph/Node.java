@@ -15,8 +15,14 @@ import lombok.Getter;
 public class Node
 {
 
+    /**
+     * Only use for visualization
+     */
     private final double lat;
 
+    /**
+     * Only use for visualization
+     */
     private final double lon;
 
     public Node(String lat, String lon)
