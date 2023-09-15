@@ -39,6 +39,7 @@ BFS Visualization (Unweighted Graph):
 Dijikstra Visualization (Weighted Graph):
 ![image](https://github.com/isep-algorithm-2021-G5/AlgorithmProject/assets/60922756/980d8899-a89e-4213-a90a-980168bfcbf4)
 
-Yen’s algorithm Visualization (K-Quickest Paths):
+Yen’s algorithm Visualization (K-Quickest Paths):   
+
 ![image](https://github.com/isep-algorithm-2021-G5/AlgorithmProject/assets/60922756/2d6c894d-814f-4c6b-a4fc-d66893f3e8ae)
 
